@@ -1,0 +1,401 @@
+﻿.brightText {
+    color: #009b74;
+}
+
+.container-fluid {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 1100px;
+}
+
+    .container-fluid panel {
+        width: auto;
+    }
+
+.button-padding {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+#nav-contact-book-logo {
+    background: url("Content/images/logosmall.png" ) no-repeat;
+    width: 66px;
+    height: 22px;
+    position: absolute;
+    left: 0;
+}
+
+#nav-contact-book-logo-container {
+    width: 80px;
+    margin-right: 10px;
+    float: left;
+    height: 50px;
+    position: relative;
+}
+
+.footer-main {
+    width: 100%;
+    min-height: 20px;
+    max-height: 44px;
+    padding: 5px 0;
+    background: #231f20;
+    position: relative;
+    bottom: auto;
+    left: 0;
+    z-index: 21;
+}
+
+.footer-nav {
+    text-align: center;
+    display: block;
+    float: left;
+    margin-bottom: 0px;
+}
+
+    .footer-nav li {
+        margin-right: 30px;
+        display: inline-block;
+        font-family: 'Oswald', sans-serif;
+        font-size: 13px;
+        text-transform: uppercase;
+        vertical-align: middle;
+    }
+
+        .footer-nav li a {
+            color: #8e8e8e;
+        }
+
+            .footer-nav li a:hover {
+                color: #aeaeae;
+            }
+
+            .footer-nav li a.btn {
+                height: 17px;
+            }
+
+        .footer-nav li.fb a {
+            background-position: -78px -66px;
+        }
+
+        .footer-nav li.copy {
+            margin-right: 22px;
+            font-size: 14px;
+            font-family: 'Lato', sans-serif;
+            text-transform: uppercase;
+            color: #6c6c6c;
+        }
+
+        .footer-nav li.fb a {
+            background-position: -78px -66px;
+        }
+
+            .footer-nav li.fb a:hover {
+                background-position: -78px -32px;
+            }
+
+
+        .footer-nav li.privacy {
+            margin-right: 22px;
+            font-size: 11px;
+            font-family: 'Lato', sans-serif;
+            text-transform: capitalize;
+            color: #5e5e5e;
+        }
+
+            .footer-nav li.privacy a {
+                color: #6c6c6c;
+            }
+
+                .footer-nav li.privacy a:hover {
+                    color: #aeaeae;
+                }
+
+.truncate-med {
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
+.scopes-width {
+    min-width: 160px;
+}
+
+.break-word {
+  word-wrap: break-word;
+}
+
+/* Boostrap Overrides */
+ .form-horizontal .control-label {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 0px;
+}
+.form-horizontal .controls {
+    display: inline-block;
+}
+
+/* Alternate CSS Themes */
+
+.panel-alt-default {
+    border-color: rgba(0, 0, 0, 0.6);
+}
+
+    .panel-alt-default > .panel-alt-heading {
+        color: #c8c8c8;
+        background-color: #3e444c;
+        border-color: rgba(0, 0, 0, 0.6);
+        font-family: 'Oswald', sans-serif;
+    }
+
+        .panel-alt-default > .panel-alt-heading + .panel-alt-collapse > .panel-alt-body {
+            border-top-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .panel-alt-default > .panel-alt-heading .badge {
+            color: #3e444c;
+            background-color: #c8c8c8;
+        }
+
+    .panel-alt-default > .panel-alt-footer + .panel-alt-collapse > .panel-alt-body {
+        border-bottom-color: rgba(0, 0, 0, 0.6);
+    }
+
+/*.panel-alt-body {
+    background-color: #2e2f2f;
+}*/
+
+.panel-alt-primary {
+    border-color: rgba(0, 0, 0, 0.6);
+}
+
+    .panel-alt-primary > .panel-alt-heading {
+        color: #ffffff;
+        background-color: #858383;
+        border-color: rgba(0, 0, 0, 0.6);
+        font-family: 'Oswald', sans-serif;
+    }
+
+        .panel-alt-primary > .panel-alt-heading + .panel-alt-collapse > .panel-alt-body {
+            border-top-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .panel-alt-primary > .panel-alt-heading .badge {
+            color: #7a8288;
+            background-color: #ffffff;
+        }
+
+    .panel-alt-primary > .panel-alt-footer + .panel-alt-collapse > .panel-alt-body {
+        border-bottom-color: rgba(0, 0, 0, 0.6);
+    }
+
+.label-alt-primary {
+    background-color: #3e444c;
+}
+
+.panel-small {
+    padding: 0px;
+}
+
+.btn-alt-primary {
+    color: #ffffff;
+    background-color: #858383;
+    border-color: #858383;
+}
+
+    .btn-alt-primary:hover,
+    .btn-alt-primary:focus,
+    .btn-alt-primary:active,
+    .btn-alt-primary.active,
+    .open > .dropdown-toggle.btn-alt-primary {
+        color: #ffffff;
+        background-color: #858383;
+        border-color: #272727;
+    }
+
+    .btn-alt-primary:active,
+    .btn-alt-primary.active,
+    .open > .dropdown-toggle.btn-alt-primary {
+        background-image: none;
+    }
+
+    .btn-alt-primary.disabled,
+    .btn-alt-primary[disabled],
+    fieldset[disabled] .btn-alt-primary,
+    .btn-alt-primary.disabled:hover,
+    .btn-alt-primary[disabled]:hover,
+    fieldset[disabled] .btn-alt-primary:hover,
+    .btn-alt-primary.disabled:focus,
+    .btn-alt-primary[disabled]:focus,
+    fieldset[disabled] .btn-alt-primary:focus,
+    .btn-alt-primary.disabled:active,
+    .btn-alt-primary[disabled]:active,
+    fieldset[disabled] .btn-alt-primary:active,
+    .btn-alt-primary.disabled.active,
+    .btn-alt-primary[disabled].active,
+    fieldset[disabled] .btn-alt-primary.active {
+        background-color: #858383;
+        border-color: #858383;
+    }
+
+    .btn-alt-primary .badge {
+        color: #464545;
+        background-color: #ffffff;
+    }
+
+.btn-alt-default {
+    color: #ffffff;
+    background-color: #3e444c;
+    border-color: #3e444c;
+}
+
+    .btn-alt-default:hover,
+    .btn-alt-default:focus,
+    .btn-alt-default:active,
+    .btn-alt-default.active,
+    .open > .dropdown-toggle.btn-alt-default {
+        color: #ffffff;
+        background-color: #3e444c;
+        border-color: #272727;
+    }
+
+    .btn-alt-default:active,
+    .btn-alt-default.active,
+    .open > .dropdown-toggle.btn-alt-default {
+        background-image: none;
+    }
+
+    .btn-alt-default.disabled,
+    .btn-alt-default[disabled],
+    fieldset[disabled] .btn-alt-default,
+    .btn-alt-default.disabled:hover,
+    .btn-alt-default[disabled]:hover,
+    fieldset[disabled] .btn-alt-default:hover,
+    .btn-alt-default.disabled:focus,
+    .btn-alt-default[disabled]:focus,
+    fieldset[disabled] .btn-alt-default:focus,
+    .btn-alt-default.disabled:active,
+    .btn-alt-default[disabled]:active,
+    fieldset[disabled] .btn-alt-default:active,
+    .btn-alt-default.disabled.active,
+    .btn-alt-default[disabled].active,
+    fieldset[disabled] .btn-alt-default.active {
+        background-color: #3e444c;
+        border-color: #3e444c;
+    }
+
+    .btn-alt-default .badge {
+        color: #464545;
+        background-color: #ffffff;
+    }
+
+.label-alt-default {
+    background-color: #858383;
+}
+
+.form-text {
+    font-size: larger;
+    padding-top: 6px;
+}
+
+.selected {
+    outline: solid #858383;
+}
+
+
+.btn-alt-primary {
+    color: #ffffff;
+    background-color: #858383;
+    border-color: #858383;
+}
+
+    .btn-alt-primary:hover,
+    .btn-alt-primary:focus,
+    .btn-alt-primary:active,
+    .btn-alt-primary.active,
+    .open > .dropdown-toggle.btn-alt-primary {
+        color: #ffffff;
+        background-color: #858383;
+        border-color: #272727;
+    }
+
+    .btn-alt-primary:active,
+    .btn-alt-primary.active,
+    .open > .dropdown-toggle.btn-alt-primary {
+        background-image: none;
+    }
+
+    .btn-alt-primary.disabled,
+    .btn-alt-primary[disabled],
+    fieldset[disabled] .btn-alt-primary,
+    .btn-alt-primary.disabled:hover,
+    .btn-alt-primary[disabled]:hover,
+    fieldset[disabled] .btn-alt-primary:hover,
+    .btn-alt-primary.disabled:focus,
+    .btn-alt-primary[disabled]:focus,
+    fieldset[disabled] .btn-alt-primary:focus,
+    .btn-alt-primary.disabled:active,
+    .btn-alt-primary[disabled]:active,
+    fieldset[disabled] .btn-alt-primary:active,
+    .btn-alt-primary.disabled.active,
+    .btn-alt-primary[disabled].active,
+    fieldset[disabled] .btn-alt-primary.active {
+        background-color: #858383;
+        border-color: #858383;
+    }
+
+    .btn-alt-primary .badge {
+        color: #464545;
+        background-color: #ffffff;
+    }
+
+    .btn-clr-default {
+    color: #333;
+    background-color: #ffffff;
+    border-color: #ccc;
+}
+
+    .btn-clr-default:hover,
+    .btn-clr-default:focus,
+    .btn-clr-default:active,
+    .btn-clr-default.active,
+    .open > .dropdown-toggle.btn-clr-default {
+        color: #333;
+        background-color: #e6e6e6;
+        border-color: #adadad;
+    }
+
+    .btn-clr-default:active,
+    .btn-clr-default.active,
+    .open > .dropdown-toggle.btn-clr-default {
+        background-image: none;
+    }
+
+    .btn-clr-default.disabled,
+    .btn-clr-default[disabled],
+    fieldset[disabled] .btn-clr-default,
+    .btn-clr-default.disabled:hover,
+    .btn-clr-default[disabled]:hover,
+    fieldset[disabled] .btn-clr-default:hover,
+    .btn-clr-default.disabled:focus,
+    .btn-clr-default[disabled]:focus,
+    fieldset[disabled] .btn-clr-default:focus,
+    .btn-clr-default.disabled:active,
+    .btn-clr-default[disabled]:active,
+    fieldset[disabled] .btn-clr-default:active,
+    .btn-clr-default.disabled.active,
+    .btn-clr-default[disabled].active,
+    fieldset[disabled] .btn-clr-default.active {
+        background-color: #e6e6e6;
+        border-color: #adadad;
+    }
+
+    .btn-clr-default .badge {
+        color: #333;
+        background-color: #ffffff;
+    }
+
+    /*.selected-row > td {
+        background-color: #858383;
+    }*/

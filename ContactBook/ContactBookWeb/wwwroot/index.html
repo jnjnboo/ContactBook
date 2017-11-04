@@ -1,10 +1,35 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en" ng-app="contactBookApp">
 <head>
     <meta charset="utf-8" />
-    <title>Hello World</title>
+    <title>Contact Book</title>
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- css -->
+    <link href="Content/css/bootstrap_simplex.min.css" rel="stylesheet" />
+    <link href="Content/css/styles.css" rel="stylesheet" />
+    <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    
+    <!-- script lib-->
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+    <script src="lib/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+    <!-- app -->
+    <script src="App_Web/app.js"></script>
+    <script src="App_Web/configRouter.js"></script>
+    <script src="App_Web/common/commonController.js"></script>
+    <script src="Config/commonConstants.js"></script>
+    <script src="App_Web/mod_contact/contactController.js"></script>
+
 </head>
-<body>
-    <h1>Hello, World!</h1>
+<body ng-controller="commonController as commonCtrl" data-ng-init="init()">
+    <header>
+        <div ng-include src="'App_Web/layout/topNav.html'"></div>
+    </header>
+    <section style="min-height:565px">
+        <div ng-view></div>
+    </section>
 </body>
 </html>

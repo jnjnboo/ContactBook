@@ -9,4 +9,10 @@
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Content\css\" />
+    <Folder Include="wwwroot\Content\images\" />
+    <Folder Include="wwwroot\Content\fonts\" />
+  </ItemGroup>
+
 </Project>
