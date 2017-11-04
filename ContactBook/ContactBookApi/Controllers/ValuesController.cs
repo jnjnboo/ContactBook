@@ -6,10 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ContactBookApi.Controllers
 {
-    [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        // GET api/values
+        // GET v1/values
         [HttpGet]
         public IEnumerable<string> Get()
         {

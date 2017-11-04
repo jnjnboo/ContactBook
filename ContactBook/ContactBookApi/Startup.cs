@@ -34,7 +34,12 @@ namespace ContactBookApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "v1/{controller=Home}/{action=get}/{id?}");
+            });
         }
     }
 }
