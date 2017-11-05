@@ -1,10 +1,9 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ContactBookApi.Controllers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
 namespace ContactBookApi.Test
 {
-
     [TestClass]
     public class Values
     {

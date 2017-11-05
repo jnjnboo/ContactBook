@@ -25,6 +25,7 @@ namespace ContactBookWeb
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
         }
