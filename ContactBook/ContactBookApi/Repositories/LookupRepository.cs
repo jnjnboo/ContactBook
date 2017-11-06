@@ -13,30 +13,29 @@ namespace ContactBookApi.Repositories
         private ContactBookContext context;
         public LookupRepository(ContactBookContext context) => this.context = context;
 
-        public Task<IEnumerable<LookupModels.AddressTypes>> GetAddressTypes()
+        public async Task<IEnumerable<LookupModels.AddressTypes>> GetAddressTypes()
         {
-            throw new NotImplementedException();
+            return await context.AddressType.Select(at => new LookupModels.AddressTypes { Id = at.AddressTypeId, Name = at.Name }).ToListAsync();
         }
 
         public async Task<IEnumerable<LookupModels.EmailTypes>> GetEmailTypes()
         {
-            return await context.EmailType
-                .Select(et => new LookupModels.EmailTypes { Id = et.EmailTypeId, Name = et.Name }).ToListAsync();
+            return await context.EmailType.Select(et => new LookupModels.EmailTypes { Id = et.EmailTypeId, Name = et.Name }).ToListAsync();
         }
 
-        public Task<IEnumerable<LookupModels.EventTypes>> EventTypes()
+        public async Task<IEnumerable<LookupModels.EventTypes>> GetEventTypes()
         {
-            throw new NotImplementedException();
+            return await context.EventType.Select(at => new LookupModels.EventTypes { Id = at.EventTypeId, Name = at.Name }).ToListAsync();
         }
 
-        public Task<IEnumerable<LookupModels.PhoneTypes>> PhoneTypes()
+        public async Task<IEnumerable<LookupModels.PhoneTypes>> GetPhoneTypes()
         {
-            throw new NotImplementedException();
+            return await context.PhoneType.Select(at => new LookupModels.PhoneTypes { Id = at.PhoneTypeId, Name = at.Name }).ToListAsync();
         }
 
-        public Task<IEnumerable<LookupModels.WebSiteTypes>> WebsiteTypes()
+        public async Task<IEnumerable<LookupModels.WebsiteTypes>> GetWebsiteTypes()
         {
-            throw new NotImplementedException();
+            return await context.WebsiteType.Select(at => new LookupModels.WebsiteTypes { Id = at.WebsiteTypeId, Name = at.Name }).ToListAsync();
         }
     }
 }

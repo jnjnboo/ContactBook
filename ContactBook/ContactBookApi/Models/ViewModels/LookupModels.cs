@@ -31,7 +31,7 @@ namespace ContactBookApi.Models.ViewModels
             public string Name { get; set; }
         }
 
-        public class WebSiteTypes
+        public class WebsiteTypes
         {
             public int Id { get; set; }
             public string Name { get; set; }

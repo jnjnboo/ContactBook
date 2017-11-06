@@ -8,8 +8,8 @@ namespace ContactBookApi.Repositories
     {
         Task<IEnumerable<LookupModels.AddressTypes>> GetAddressTypes();
         Task<IEnumerable<LookupModels.EmailTypes>> GetEmailTypes();
-        Task<IEnumerable<LookupModels.EventTypes>> EventTypes();
-        Task<IEnumerable<LookupModels.PhoneTypes>> PhoneTypes();
-        Task<IEnumerable<LookupModels.WebSiteTypes>> WebsiteTypes();
+        Task<IEnumerable<LookupModels.EventTypes>> GetEventTypes();
+        Task<IEnumerable<LookupModels.PhoneTypes>> GetPhoneTypes();
+        Task<IEnumerable<LookupModels.WebsiteTypes>> GetWebsiteTypes();
     }
 }
