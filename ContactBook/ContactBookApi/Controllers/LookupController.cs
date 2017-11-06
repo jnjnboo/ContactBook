@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ContactBookApi.Controllers
 {
     [Produces("application/json")]
-    public class LookupController : Controller
+    public class LookupController : Microsoft.AspNetCore.Mvc.Controller
     {
         public LookupController(ILookupRepository lookupRepository)
         {
