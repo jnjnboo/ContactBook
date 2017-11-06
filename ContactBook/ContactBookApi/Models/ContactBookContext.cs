@@ -47,7 +47,6 @@ namespace ContactBookApi.Models
                 entity.HasOne(d => d.Contact)
                     .WithMany(p => p.Address)
                     .HasForeignKey(d => d.ContactId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Address_Contact");
             });
 
@@ -94,7 +93,6 @@ namespace ContactBookApi.Models
                 entity.HasOne(d => d.Contact)
                     .WithMany(p => p.Email)
                     .HasForeignKey(d => d.ContactId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Email_Contact");
 
                 entity.HasOne(d => d.EmailType)
@@ -113,7 +111,6 @@ namespace ContactBookApi.Models
                 entity.HasOne(d => d.Contact)
                     .WithMany(p => p.Event)
                     .HasForeignKey(d => d.ContactId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Event_Contact");
 
                 entity.HasOne(d => d.EventType)
@@ -136,7 +133,6 @@ namespace ContactBookApi.Models
                 entity.HasOne(d => d.Contact)
                     .WithMany(p => p.Phone)
                     .HasForeignKey(d => d.ContactId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Phone_Contact");
 
                 entity.HasOne(d => d.PhoneType)
@@ -182,7 +178,6 @@ namespace ContactBookApi.Models
                 entity.HasOne(d => d.Contact)
                     .WithMany(p => p.Website)
                     .HasForeignKey(d => d.ContactId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Website_Contact");
 
                 entity.HasOne(d => d.WebsiteType)
