@@ -3,13 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactBookWeb", "ContactBookWeb\ContactBookWeb.csproj", "{0AB50B7A-FA6A-4935-BDE5-07FBDCA4EC33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactBookWeb", "ContactBookWeb\ContactBookWeb.csproj", "{0AB50B7A-FA6A-4935-BDE5-07FBDCA4EC33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactBookApi", "ContactBookApi\ContactBookApi.csproj", "{9F91B602-785C-4033-8B6C-F0D3F24C8D39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactBookApi", "ContactBookApi\ContactBookApi.csproj", "{9F91B602-785C-4033-8B6C-F0D3F24C8D39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactBookApi.Test", "ContactBookApi.Test\ContactBookApi.Test.csproj", "{D68DA3D4-E426-49E9-82D8-C3CFA51C51D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactBookApi.Test", "ContactBookApi.Test\ContactBookApi.Test.csproj", "{D68DA3D4-E426-49E9-82D8-C3CFA51C51D5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlScripts", "SqlScripts", "{7D0CD535-60A9-4DAF-BE96-AB4E2DBE2582}"
+	ProjectSection(SolutionItems) = preProject
+		SqlScripts\ContactBook_FullDB_Tables_Data_11_4_2017.sql = SqlScripts\ContactBook_FullDB_Tables_Data_11_4_2017.sql
+		SqlScripts\ContactBookSchemaDesign.png = SqlScripts\ContactBookSchemaDesign.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E7383A69-74DF-4915-B8E0-71C833131A7D}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
