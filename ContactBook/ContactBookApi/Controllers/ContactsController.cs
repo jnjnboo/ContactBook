@@ -49,43 +49,42 @@ namespace ContactBookApi.Controllers
             return Ok(contact);
         }
 
-        //// PUT: v1/Contacts/5
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutContact([FromRoute] int id, [FromBody] Contact contact)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        // PUT: v1/Contacts/5
+        [HttpPut("{contactId}")]
+        public async Task<IActionResult> PutContact([FromRoute] int contactId, [FromBody] Contact contact)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    if (id != contact.ContactId)
-        //    {
-        //        return BadRequest();
-        //    }
+            if (contactId != contact.ContactId)
+            {
+                return BadRequest("ContactId:" + contactId + " and the id of the contact passed in do not match");
+            }
 
-        //    _context.Entry(contact).State = EntityState.Modified;
+            var exists = await ContactRepository.ContactExists(contactId);
 
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!ContactExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+            if (!exists)
+            {
+                return NotFound();
+            }
 
-        //    return NoContent();
-        //}
+            var isSaved = await ContactRepository.UpdateContact(contact);
 
-        //POST: v1/Contacts
-       [HttpPost]
+            if (!isSaved)
+            {
+                var message = "Unable to save changes. " +
+                    "Try again, and if the problem persists, " +
+                    "see your system administrator.";
+                return StatusCode(500, message);
+            }
+
+            return NoContent();
+        }
+
+        // POST: v1/Contacts
+        [HttpPost]
         public async Task<IActionResult> PostContact([FromBody] Contact contact)
         {
             if (!ModelState.IsValid)

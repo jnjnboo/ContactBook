@@ -20,10 +20,14 @@ namespace ContactBookApi.Repositories
                 .ToListAsync();
         }
 
+        /// <summary>
+        /// Add a new Contact to the Contact repository.
+        /// </summary>
+        /// <param name="contact">Model.Contact object.</param>
+        /// <returns>Async Task, with the number of objects saved to the repository.</returns>
         public async Task<int> AddContact(Contact contact)
         {
             context.Contact.Add(contact);
-            //returns number of objects saved to the database
             return await context.SaveChangesAsync();
         }
 
@@ -41,18 +45,43 @@ namespace ContactBookApi.Repositories
         public async Task<Contact> DeleteContact(int id)
         {
             var contact = await GetContact(id);
-            if(contact == null)
+            if (contact == null)
             {
                 return contact;
             }
+
             context.Contact.Remove(contact);
             await context.SaveChangesAsync();
             return contact;
         }
 
-        private bool ContactExists(int id)
+        /// <summary>
+        /// Update Contact information only in Contact repository.
+        /// </summary>
+        /// <param name="contact">Model.Contact object.</param>
+        /// <returns>Async Task, Returns boolean indicating if it was a successful save.</returns>
+        public async Task<bool> UpdateContact(Contact contact)
         {
-            return context.Contact.Any(e => e.ContactId == id);
+            var isSaved = false;
+            context.Entry(contact).State = EntityState.Modified;
+            var currentContact = await GetContact(contact.ContactId);
+            try
+            {
+                context.Entry(currentContact).CurrentValues.SetValues(contact);
+                await context.SaveChangesAsync();
+                isSaved = true;
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                isSaved = false;
+            }
+
+            return isSaved;
+        }
+
+        public async Task<bool> ContactExists(int id)
+        {
+            return await context.Contact.AnyAsync(e => e.ContactId == id);
         }
     }
 }

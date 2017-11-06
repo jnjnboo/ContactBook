@@ -10,5 +10,7 @@ namespace ContactBookApi.Repositories
         Task<int> AddContact(Contact contact);
         Task<Contact> GetContact(int id);
         Task<Contact> DeleteContact(int id);
+        Task<bool> UpdateContact(Contact contact);
+        Task<bool> ContactExists(int id);
     }
 }

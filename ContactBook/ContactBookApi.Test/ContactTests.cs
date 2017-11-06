@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ContactBookApi.Controllers;
 using ContactBookApi.Models;
@@ -11,7 +10,7 @@ using Moq;
 namespace ContactBookApi.Test
 {
     [TestClass]
-   public class ContactTests
+    public class ContactTests
     {
         [TestMethod]
         public async Task GetContactReturnsValidResponse()
@@ -31,15 +30,34 @@ namespace ContactBookApi.Test
             Assert.AreEqual(1, listResult.Count);
         }
 
-        private IEnumerable<Models.Contact> GetContacts()
+        private IEnumerable<Contact> GetContacts()
         {
-            return new List<Models.Contact>
+            return new List<Contact>
             {
-                new Models.Contact { ContactId = 1, Name = "Satya Nadella", Company="Microsoft", JobTitle ="CEO",
-                    Email = new Models.Email[] { new Email
-                        { EmailId=1, EmailAddress = "snadella@microsoft.com", EmailTypeId=2 } },
-                    Website = new Website[] { new Website { WebsiteId=1, Url="www.microsoft.com", WebsiteTypeId =2} },
-                    Phone = new Phone[] { new Phone { PhoneId=1, Number="206-555-1234", PhoneTypeId=1} }
+                new Contact
+                {
+                    ContactId = 1, Name = "Satya Nadella", Company = "Microsoft", JobTitle = "CEO",
+                    Email = new Email[]
+                    {
+                        new Email
+                        {
+                            EmailId = 1, EmailAddress = "snadella@microsoft.com", EmailTypeId = 2
+                        }
+                    },
+                    Website = new Website[] 
+                    {
+                        new Website
+                        {
+                            WebsiteId = 1, Url = "www.microsoft.com", WebsiteTypeId = 2
+                        }
+                    },
+                    Phone = new Phone[]
+                    {
+                        new Phone
+                        {
+                            PhoneId = 1, Number = "206-555-1234", PhoneTypeId = 1
+                        }
+                    }
                 }
             };
         }
