@@ -1,6 +1,6 @@
-﻿var main = angular.module('contactBookApp.common');
+﻿var common = angular.module('contactBookApp.common');
 
-main.controller('commonController', ['$scope', '$rootScope', '$route', '$routeParams', '$location', 
+common.controller('commonController', ['$scope', '$rootScope', '$route', '$routeParams', '$location', 
     function ($scope, $rootScope, $route, $routeParams, $location) {
         var commonCtrl = this;
 
@@ -23,7 +23,7 @@ main.controller('commonController', ['$scope', '$rootScope', '$route', '$routePa
         };
 
         $scope.changeSort = function (column, sort) {
-            if (sort.column == column) {
+            if (sort.column === column) {
                 sort.descending = !sort.descending;
             } else {
                 sort.column = column;
@@ -32,7 +32,7 @@ main.controller('commonController', ['$scope', '$rootScope', '$route', '$routePa
         };
 
         $scope.sortClass = function (column, sort) {
-            if (sort.column == column) {
+            if (sort.column === column) {
                 var direction = "up";
                 if (!sort.descending)
                     direction = "down";

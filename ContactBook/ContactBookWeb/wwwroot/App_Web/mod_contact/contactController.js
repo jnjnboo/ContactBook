@@ -1,6 +1,6 @@
-﻿var app = angular.module('contactBookApp.contact');
+﻿var contact = angular.module('contactBookApp.contact');
 
-app.controller('contactController', ['$scope', '$rootScope', '$routeParams', '$location', 
+contact.controller('contactController', ['$scope', '$rootScope', '$routeParams', '$location', 
     function ($scope, $rootScope, $routeParams, $location) {
         var contactCtrl = this;
         var commonCtrl = $scope.commonCtrl;

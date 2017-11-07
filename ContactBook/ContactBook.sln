@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactBookWeb", "ContactBookWeb\ContactBookWeb.csproj", "{0AB50B7A-FA6A-4935-BDE5-07FBDCA4EC33}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9F91B602-785C-4033-8B6C-F0D3F24C8D39} = {9F91B602-785C-4033-8B6C-F0D3F24C8D39}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactBookApi", "ContactBookApi\ContactBookApi.csproj", "{9F91B602-785C-4033-8B6C-F0D3F24C8D39}"
 EndProject

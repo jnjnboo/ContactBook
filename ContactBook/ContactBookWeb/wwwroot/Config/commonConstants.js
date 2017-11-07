@@ -1,5 +1,5 @@
-﻿var app = angular.module('contactBookApp.common');
+﻿var common = angular.module('contactBookApp.common');
 
-app.constant('CommonConstants', {
-    apiUrl: 'http://localhost/v1/api/'
+common.constant('CommonConstants', {
+    apiUrl: 'http://localhost:42/v1/'
 });
