@@ -1,21 +1,22 @@
 ﻿var common = angular.module('contactBookApp.common');
 
-common.controller('commonController', ['$scope', '$rootScope', '$route', '$routeParams', '$location', 
-    function ($scope, $rootScope, $route, $routeParams, $location) {
+common.controller('commonController', ['$scope', '$rootScope', '$route', '$routeParams', '$location', 'alertService',
+    function ($scope, $rootScope, $route, $routeParams, $location, alertService) {
         var commonCtrl = this;
 
         $scope.Title = 'Common Controller';
         $scope.$route = $route;
         $scope.$routeParams = $routeParams;
         $rootScope.referrer = $location.$$path;
+        $rootScope.closeAlert = alertService.closeAlert;
 
 
         //** ALERTS**//
-        commonCtrl.showAlert = function (message, type) {
-            commonCtrl.message = message;
-            commonCtrl.type = type;
-            commonCtrl.alertVisible = true;
-        };
+        //commonCtrl.showAlert = function (message, type) {
+        //    commonCtrl.message = message;
+        //    commonCtrl.type = type;
+        //    commonCtrl.alertVisible = true;
+        //};
     
         //** TABLE SORT methods **//
         commonCtrl.changeSort = function (column, sort) {
@@ -37,7 +38,7 @@ common.controller('commonController', ['$scope', '$rootScope', '$route', '$route
                 if (!sort.descending)
                     direction = "down";
                 return 'glyphicon glyphicon-arrow-' + direction;
-            };
+            }
         };
 
         //** INIT **//

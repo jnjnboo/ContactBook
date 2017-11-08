@@ -1,5 +1,6 @@
-﻿angular.module('contactBookApp', ['ui.bootstrap']);
+﻿angular.module('contactBookApp', ['ui.bootstrap', 'ngCookies']);
 angular.module('contactBookApp.routes', []);
+angular.module('contactBookApp.services', []);
 angular.module('contactBookApp.common', []);
 angular.module('contactBookApp.contact', []);
 angular.module('contactBookApp.lookup', []);
@@ -10,6 +11,7 @@ var searchApp = angular.module('contactBookApp',
         'ngRoute',
         'contactBookApp',
         'contactBookApp.routes',
+        'contactBookApp.services',
         'contactBookApp.contact',
         'contactBookApp.common',
         'contactBookApp.lookup',
