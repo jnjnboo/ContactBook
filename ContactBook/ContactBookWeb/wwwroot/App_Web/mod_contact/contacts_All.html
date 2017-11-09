@@ -1,15 +1,46 @@
 ﻿<div class="panel panel-default xscrolling panel-small">
-    <div class="panel-heading panel-alt-heading" ng-click="">
+    <div class="panel-heading panel-alt-heading">
         <div class="panel-title">
+            <div class="pull-right">
+                <i ng-show="!contactCtrl.contactsAreLoaded" class="fa fa-spinner fa-spin"></i>
+                <span class="label label-alt-default" style="padding:1px 4px 1px 4px;"
+                      ng-show="contactCtrl.contactsAreLoaded" title="Refresh" ng-click="contactCtrl.resetAndLoadScopes()">
+                    <span class="fa fa-refresh"></span>
+                </span>
+            </div>
             <div>
-                Contacts
-                <i ng-show="!contactsCtrl.allLoaded" class="icon-refresh icon-refresh-animate"></i>
+                Your Contacts
             </div>
         </div>
     </div>
-    <div class="panel-body panel-alt-body" ng-show="contactsCtrl.allLoaded">
-        <div class="row">
-
+    <div class="panel-body panel-alt-body" ng-show="contactCtrl.contactsAreLoaded">
+        <div class="row" style="margin-bottom:10px">
+            <div class="col-xs-11 wrapper">
+                <span class="fa fa-search"></span>
+               <input type="text" class="form-control" ng-model="contactCtrl.searchContacts" placeholder="Search Contacts" />
+            </div>
+            <div class="col-xs-1" style="padding-top:10px" ng-click="contactCtrl.searchContacts=''">
+                <span class="fa fa-times" style="margin-left:-20px"></span>
+            </div>
         </div>
-        </div>
+        <table ng-show="contactCtrl.contactsAreLoaded" ng-cloak
+               class="table table-condensed table-striped table-hover">
+            <thead>
+                <tr>
+                    <th class="col-xs-1"></th>
+                    <th class="col-xs-9">
+                        <button class="btn btn-sm btn-alt-primary" ng-click="changeSort('name',contactCtrl.sortContacts)">
+                            Name
+                            <span ng-class="sortClass('name',contactCtrl.sortContacts)"></span>
+                        </button>
+                    </th>
+                    <th class="col-xs-1"></th>
+                    <th class="col-xs-1"></th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="contact in contactCtrl.contacts | orderBy:contactCtrl.sortContacts.column:contactCtrl.sortContacts.descending | filter:contactCtrl.searchContacts">
+                <tr contact-item="contact" ng-class="{selected: contact === contactCtrl.selectedContact}"></tr>
+            </tbody>
+        </table>
+    </div>
 </div>

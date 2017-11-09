@@ -1,0 +1,16 @@
+﻿<tr class="row">
+    <td class="col-xs-1 text-center" style="padding:5px 1px 5px 1px;">
+        <span class="fa fa-user-circle-o"></span>
+    </td>
+    <td class="col-xs-9" ng-click="$parent.contactCtrl.viewContact(item.contactId, item)">
+        <div class="break-word">
+            {{item.name}} 
+        </div>
+    </td>
+    <td class="col-xs-1 text-center" style="padding:5px 1px 5px 1px;" ng-click="$parent.contactCtrl.editContact(item.contactId, item)" title="edit contact">
+        <span style="padding:1px 4px 1px 4px;" class="fa fa-pencil-square-o"></span>
+    </td>
+    <td class="col-xs-1 text-center" style="padding:5px 1px 5px 1px;" ng-click="$parent.contactCtrl.deleteContactConfirmation=true; $parent.contactCtrl.viewContact(item.contactId, item)" title="delete contact">
+        <span style="padding:1px 4px 1px 4px;" class="fa fa-trash-o"></span>
+    </td>
+</tr>

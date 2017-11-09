@@ -9,30 +9,6 @@ common.controller('commonController', ['$scope', '$rootScope', '$route', '$route
         $scope.$routeParams = $routeParams;
         $rootScope.referrer = $location.$$path;
         $rootScope.closeAlert = alertService.closeAlert;
-        commonCtrl.addNewContact = false;
-
-        //** TABLE SORT methods **//
-        commonCtrl.changeSort = function (column, sort) {
-            $scope.changeSort(column, sort);
-        };
-
-        $scope.changeSort = function (column, sort) {
-            if (sort.column === column) {
-                sort.descending = !sort.descending;
-            } else {
-                sort.column = column;
-                sort.descending = false;
-            }
-        };
-
-        $scope.sortClass = function (column, sort) {
-            if (sort.column === column) {
-                var direction = "up";
-                if (!sort.descending)
-                    direction = "down";
-                return 'glyphicon glyphicon-arrow-' + direction;
-            }
-        };
 
         //** INIT **//
         $scope.init = function () {

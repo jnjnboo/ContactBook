@@ -2,6 +2,20 @@
     color: #009b74;
 }
 
+.wrapper {
+    position: relative;
+}
+
+.wrapper input {
+    padding-left: 23px;
+}
+
+.wrapper span {
+    position: absolute;
+    left: 22px;
+    top: 11px;
+}
+
 .container-fluid {
     padding-top: 5px;
     padding-bottom: 5px;

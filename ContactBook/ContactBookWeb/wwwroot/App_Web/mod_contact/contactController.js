@@ -1,24 +1,75 @@
 ﻿var contact = angular.module('contactBookApp.contact');
 
-contact.controller('contactController', ['$scope', '$route', '$routeParams', '$rootScope', '$location', 'contactFactory',
-    function ($scope, $route, $routeParams, $rootScope, $location, contactFactory) {
+contact.controller('contactController', ['$scope', '$route', '$routeParams', '$rootScope', '$location', '$filter', 'contactFactory',
+    function ($scope, $route, $routeParams, $rootScope, $location, $filter, contactFactory) {
         var contactCtrl = this;
         var commonCtrl = $scope.commonCtrl;
+        contactCtrl.contacts = [];
+        contactCtrl.selectedContact = {};
 
         $scope.Title = 'Contact Controller';
 
         //** All Contacts **//
-        contactCtrl.getAllScopes = function () {
+        contactCtrl.getAllContacts = function (selected) {
+            contactCtrl.contacts = [];
+            contactCtrl.contactsAreLoaded = false;
+
+            contactFactory.getContacts().then(function (contacts) {
+                if (angular.isDefined(contacts)) {
+                    contactCtrl.contacts = angular.copy(contacts);
+                    if (angular.isDefined(selected)){
+                        var found = $filter('filter')(contactCtrl.contacts, { contactId: selected.contactId }, true);
+                        if (found.length) {
+                            contactCtrl.selectedContact = found[0];
+                        }
+                    }
+                }
+
+                contactCtrl.contactsAreLoaded = true;
+            });
+        };
+
+        contactCtrl.resetAndLoadScopes = function () {
+            contactCtrl.searchContacts = "";
+            contactCtrl.getAllContacts();
+        }
+
+        //** SORT All Contacts table  **//
+        commonCtrl.changeSort = function (column, sort) {
+            $scope.changeSort(column, sort);
+        };
+
+        $scope.changeSort = function (column, sort) {
+            if (sort.column === column) {
+                sort.descending = !sort.descending;
+            } else {
+                sort.column = column;
+                sort.descending = false;
+            }
+        };
+
+        $scope.sortClass = function (column, sort) {
+            if (sort.column === column) {
+                var direction = "up";
+                if (!sort.descending)
+                    direction = "down";
+                return 'fa fa-arrow-' + direction;
+            }
         };
 
         //** Single Contact **//
-        contactCtrl.getSingleContact = function (userId, contactId) {
+        contactCtrl.viewContact = function (contactId, selected) {
+            if (angular.isDefined(selected)){
+                contactCtrl.selectedContact = selected;
+            }
             contactCtrl.singleContact = {};
             contactCtrl.singleContactIsLoaded = false;
+            contactCtrl.showSingleContact = true;
+            contactCtrl.viewOnly = true;
 
             contactFactory.getContact(contactId).then(function (contact) {
                 if (angular.isDefined(contact)) {
-                    contactCtrl.singleContact = contact;
+                    contactCtrl.singleContact = angular.copy(contact);
                 } else {
                     contactCtrl.singleContact = {};
                 }
@@ -29,13 +80,37 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
 
         contactCtrl.closeContact = function () {
             contactCtrl.singleContact = {};
+            contactCtrl.selectedContact = {};
+            contactCtrl.originalContact = {};
+            contactCtrl.deleteContactConfirmation = false;
             contactCtrl.showSingleContact = false;
         }
+
         //** Edit **//
-        contactCtrl.editContact = function () {
-            contactCtrl.showSingleContact = true;
-            contactCtrl.originalContact = angular.copy(contactCtrl.singleContact);
-            contactCtrl.viewOnly = false;
+        contactCtrl.editContact = function (contactId, selected) {
+            if (angular.isDefined(selected)) {
+                contactCtrl.selectedContact = selected;
+            }
+
+            if (angular.isDefined(contactId)) {
+                contactFactory.getContact(contactId).then(function (contact) {
+                    if (angular.isDefined(contact)) {
+                        contactCtrl.singleContact = angular.copy(contact);
+                        contactCtrl.originalContact = angular.copy(contact);
+                        contactCtrl.singleContactIsLoaded = true;
+                    } else {
+                        contactCtrl.closeContact();
+                    }
+
+                    contactCtrl.showSingleContact = true;
+                    contactCtrl.originalContact = angular.copy(contactCtrl.singleContact);
+                    contactCtrl.viewOnly = false;
+                });
+            } else {
+                contactCtrl.showSingleContact = true;
+                contactCtrl.originalContact = angular.copy(contactCtrl.singleContact);
+                contactCtrl.viewOnly = false;
+            }
         };
 
         contactCtrl.saveEdit = function () {
@@ -44,7 +119,7 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
             }
 
             contactFactory.putContact(contactCtrl.singleContact).then(function () {
-                contactCtrl.getAllScopes();
+                contactCtrl.getAllContacts(contactCtrl.selectedContact);
             });
             contactCtrl.viewOnly = true;
         };
@@ -61,10 +136,12 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
         //** Add **//
         contactCtrl.addNewContact = function () {
             contactCtrl.singleContact = {};
+            contactCtrl.selectedContact = {};
             contactCtrl.viewOnly = false;
             contactCtrl.showSingleContact = true;
             contactCtrl.getDefault();
         }
+
         contactCtrl.getDefault = function () {
             contactFactory.getDefault().then(function (contact) {
                 contact.singleContact = angular.copy(contact);
@@ -81,32 +158,34 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
             contactFactory.postContact(contactCtrl.singleContact).then(function (contact) {
                 contactCtrl.singleContact = angular.copy(contact);
                 contactCtrl.viewOnly = true;
-                contactCtrl.getAllScopes();
+                contactCtrl.getAllContacts();
             });
         };
 
         contactCtrl.cancelSaveNew = function () {
-            contactCtrl.singleContact = {};
-            contactCtrl.showSingleContact = false;
+            contactCtrl.closeContact();
+            contactCtrl.getAllContacts();
         };
 
         //** Delete **//
-        contactCtrl.deleteContact = function () {
-            contactFactory.deleteContact(contactCtrl.singleContact);
+        contactCtrl.deleteContact = function (contact) {
+            contactFactory.deleteContact(contact).then(function (contact) {
+                contactCtrl.closeContact();
+                contactCtrl.getAllContacts();
+            });
         };
 
         $scope.init = function () {
-            contactCtrl.allLoaded = true;
             contactCtrl.singleContact = {};
+            contactCtrl.getAllContacts();
 
             if (commonCtrl.addNewContact) {
                 commonCtrl.addNewContact = false;
                 contactCtrl.addNewContact();
             }
-            else {
-                contactCtrl.showSingleContact = true;
-                contactCtrl.viewOnly = true;
-                contactCtrl.getSingleContact(1, 5);
-            }
+
+            contactCtrl.sortContacts = {
+                column: '', descending: false
+            };
         };
     }]);

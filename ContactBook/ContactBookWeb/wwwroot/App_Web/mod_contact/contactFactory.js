@@ -5,13 +5,12 @@ contact.factory('contactFactory', ['$http', 'CommonConstants', 'alertService', f
 
     return {
         getContacts: function () {
-            return $http.get(url + 'Contacts')
-                .success(function (response) {
-                    return response.data;
-                }).error(function (data, status, headers, config) {
-                    if (status === 404)
-                        return null;
-                });
+            return $http.get(url + 'Contacts').then(function (response) {
+                return response.data;
+            }, function (error) {
+                alertService.add("error", "Requested data was not found.");
+                console.log(error, 'Unable to retrieve data from the server.');
+            });
         },
         getContact: function (contactId) {
             return $http.get(url + 'Contacts/' + contactId).then(function (response) {
