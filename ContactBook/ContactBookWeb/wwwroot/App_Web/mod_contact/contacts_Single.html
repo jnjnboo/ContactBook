@@ -1,0 +1,162 @@
+﻿<div class="panel panel-default xscrolling panel-small">
+    <div class="panel-heading panel-primary">
+        <div class="pull-right">
+            <span style="margin-bottom:10px">
+                <span ng-show="!contactCtrl.viewOnly">
+                    <span ng-show="contactCtrl.singleContact.contactId">
+                        <button class="btn btn-sm btn-alt-primary"
+                                ng-click="contactCtrl.saveEdit(contactCtrl.singleContact);">
+                            <span class="fa fa-save"></span> 
+                            Save
+                        </button>
+                        <button class="btn btn-sm btn-alt-primary" ng-click="contactCtrl.cancelEdit()">
+                            <span class="fa fa-times-circle-o"></span>
+                            <span>Cancel</span>
+                        </button>
+                    </span>
+                    <span ng-show="!contactCtrl.singleContact.contactId">
+                        <button class="btn btn-sm btn-alt-primary" ng-click="contactCtrl.saveNew(contactCtrl.singleContact);">
+                            <span class="fa fa-save"></span> 
+                            Add
+                        </button>
+                        <button class="btn btn-sm btn-alt-primary" ng-click="contactCtrl.closeContact()">
+                            <span class="fa fa-trash-o"></span>
+                            <span>Cancel</span>
+                        </button>
+                    </span>
+                </span>
+                <span ng-show="contactCtrl.viewOnly && contactCtrl.singleContactIsLoaded">
+                    <button class="btn btn-sm btn-alt-primary" ng-click="contactCtrl.editContact()">
+                        <span class="fa fa-edit"></span> Edit
+                    </button>
+                    <button class="btn btn-sm btn-alt-primary" ng-click="contactCtrl.closeContact()">
+                        <span class="fa fa-times-circle-o"></span>
+                        <span> Close </span>
+                    </button>
+                </span>
+            </span>
+        </div>
+        <div class="panel-title">
+            <div>
+                <span ng-show="!contactCtrl.viewOnly">
+                    <span ng-show="contactCtrl.singleContact.contactId">Edit Contact</span>
+                    <span ng-show="!contactCtrl.singleContact.contactId">New Contact</span>
+                </span>
+                <span ng-show="contactCtrl.viewOnly">Contact</span>
+                <i ng-show="!contactCtrl.singleContactIsLoaded" class="fa fa-spinner fa-spin"></i>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body panel-alt-body" ng-show="contactCtrl.singleContactIsLoaded">
+        <form class="form-horizontal" id="ContactForm" ng-show="!contactCtrl.viewOnly" >
+            <div class="form-group">
+                <div class="col-lg-7 col-lg-offset-3"></div>
+            </div>
+            <fieldset>
+                <div class="form-group">
+                    <label for="contactName" class="col-lg-2 control-label padTop"><span class="fa fa-user-circle-o"></span></label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="editContactName" placeholder="Name" style=""
+                               ng-model="contactCtrl.singleContact.name" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="preferredName" class="col-lg-2 control-label padTop">Preferred</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control"  id="preferredName" placeholder="Preferred Name"
+                               ng-model="contactCtrl.singleContact.preferredName" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="previousNames" class="col-lg-2 control-label padTop">Other</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control"  id="previousNames" placeholder="Other Names"
+                               ng-model="contactCtrl.singleContact.previousNames" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactCompany" class="col-lg-2 control-label padTop"><span class="fa fa-building-o"></span></label>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control"  id="contactCompany" placeholder="Name"
+                               ng-model="contactCtrl.singleContact.company" />
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control"  id="contactJobTitle" placeholder="Job Title"
+                               ng-model="contactCtrl.singleContact.jobTitle" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactRelationship" class="col-lg-2 control-label padTop"><span class="fa fa-cogs"></span></label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control"  id="contactRelationship" placeholder="Relationship"
+                               ng-model="contactCtrl.singleContact.relationship" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactNotes" class="col-lg-2 control-label padTop"><span class="fa fa-list-alt"></span></label>
+                    <div class="col-lg-10">
+                        <textarea class="form-control" rows="3"  id="contactNotes" placeholder="Notes"
+                                  ng-model="contactCtrl.singleContact.notes"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+        <form class="form-horizontal" id="ContactForm" ng-show="contactCtrl.viewOnly" >
+            <div class="form-group">
+                <div class="col-lg-7 col-lg-offset-3"></div>
+            </div>
+            <fieldset>
+                <div class="form-group">
+                    <label for="contactName" class="col-lg-2 control-label"><span class="fa fa-user-circle-o"></span></label>
+                    <div class="col-lg-10 view-label">
+                        <label id="contactName" ng-bind="contactCtrl.singleContact.name"></label>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-if="contactCtrl.singleContact.preferredName">
+                    <label for="preferredName" class="col-lg-2 control-label"></label>
+                    <div class="col-lg-10">
+                        <label id="contactName"  ng-bind="contactCtrl.singleContact.preferredName"></label>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-if="contactCtrl.singleContact.previousNames">
+                    <label for="previousNames" class="col-lg-2 control-label"></label>
+                    <div class="col-lg-10">
+                        <label id="contactName"  ng-bind="contactCtrl.singleContact.previousNames"></label>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-if="contactCtrl.singleContact.company">
+                    <label for="contactCompany" class="col-lg-2 control-label"><span class="fa fa-building-o"></span></label>
+                    <div class="col-lg-5 view-label">
+                        <label id="contactName" class="break-word" ng-bind="contactCtrl.singleContact.company"></label>
+                    </div>
+                    <div class="col-lg-5  view-label">
+                        <label id="contactName" class="break-word" ng-bind="contactCtrl.singleContact.jobTitle"></label>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-if="contactCtrl.singleContact.relationship">
+                    <label for="contactRelationship" class="col-lg-2 control-label"><span class="fa fa-cogs"></span></label>
+                    <div class="col-lg-10 view-label">
+                        <label id="contactName"  ng-bind="contactCtrl.singleContact.relationship"></label>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-if="contactCtrl.singleContact.notes">
+                    <label for="contactNotes" class="col-lg-2 control-label"><span class="fa fa-list-alt"></span></label>
+                    <div class="col-lg-10 view-label">
+                        <label id="contactNotes" ng-bind="contactCtrl.singleContact.notes"></label>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

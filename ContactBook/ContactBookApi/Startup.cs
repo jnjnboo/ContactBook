@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 namespace ContactBookApi
 {
@@ -35,6 +36,18 @@ namespace ContactBookApi
             services.AddDbContext<ContactBookContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ContactBook")));
             services.AddScoped<ILookupRepository, LookupRepository>();
             services.AddScoped<IContactRepository, ContactRepository>();
+
+            var corsBuilder = new CorsPolicyBuilder();
+            corsBuilder.AllowAnyHeader();
+            corsBuilder.AllowAnyMethod();
+            corsBuilder.AllowAnyOrigin();
+            //corsBuilder.WithOrigins("http://localhost:56573"); // for a specific url. Don't add a forward slash on the end!
+            corsBuilder.AllowCredentials();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("SiteCorsPolicy", corsBuilder.Build());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,11 +61,12 @@ namespace ContactBookApi
                 app.UseBrowserLink();
             }
 
-            app.UseMvc(routes =>
-            {
+            app.UseCors("SiteCorsPolicy");
+
+            app.UseMvc(routes =>{
                 routes.MapRoute(
                     name: "default",
-                    template: "v1/{controller=Home}/{action=get}/{id?}");
+                    template: "v1/{controller=Contacts}/{action=Contact}/{id?}");
             });
         }
     }

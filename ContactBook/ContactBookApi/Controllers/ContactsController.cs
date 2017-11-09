@@ -30,6 +30,16 @@ namespace ContactBookApi.Controllers
             return Ok(results);
         }
 
+        // GET: v1/Contacts/default
+        [Route("Default")]
+        [HttpGet]
+        public IActionResult GetDefault()
+        {
+            var results = new Contact();
+
+            return Ok(results);
+        }
+
         // GET: v1/Contacts/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetContact([FromRoute] int id)

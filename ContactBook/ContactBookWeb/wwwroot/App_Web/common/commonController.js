@@ -10,14 +10,6 @@ common.controller('commonController', ['$scope', '$rootScope', '$route', '$route
         $rootScope.referrer = $location.$$path;
         $rootScope.closeAlert = alertService.closeAlert;
 
-
-        //** ALERTS**//
-        //commonCtrl.showAlert = function (message, type) {
-        //    commonCtrl.message = message;
-        //    commonCtrl.type = type;
-        //    commonCtrl.alertVisible = true;
-        //};
-    
         //** TABLE SORT methods **//
         commonCtrl.changeSort = function (column, sort) {
             $scope.changeSort(column, sort);

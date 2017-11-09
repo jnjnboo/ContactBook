@@ -32,15 +32,4 @@
             }
         };
     }]);
-
-    common.config(['$httpProvider', '$cookiesProvider', function ($httpProvider, $cookiesProvider) {
-        //Registers the interceptor in the httpProvider's interceptors array during configuration of app
-        $httpProvider.interceptors.push('MyHttpInterceptor');
-
-        $cookiesProvider.defaults = {
-            path: 'contactBook',
-            domain: 'rawlins',
-            secure: true
-        };
-    }]);
 })();

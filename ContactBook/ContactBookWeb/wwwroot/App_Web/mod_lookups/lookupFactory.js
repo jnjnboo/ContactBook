@@ -5,49 +5,54 @@ lookup.factory('lookupFactory', ['$http', 'CommonConstants', function ($http, Co
 
     return {
         getAddressTypes: function () {
-            return $hhtp.get(url + 'Lookup/AddressTypes')
-                .success(function (response) {
-                    return response.data;
-                }).error(function (data, status, headers, config) {
-                    if (status === 404)
-                        return null;
-                });
+            return $hhtp.get(url + 'Lookup/AddressTypes').then(function (response) {
+                return response.data;
+            }, function (error) {
+                alertService.add("error", "Requested data for Address Types was not found.");
+                console.log(error, 'Unable to retrieve Address Types from the server.');
+                if (status === 404)
+                    return null;
+            });
         },
         getEmailTypes: function () {
-            return $hhtp.get(url + 'Lookup/EmailTypes')
-                .success(function (response) {
-                    return response.data;
-                }).error(function (data, status, headers, config) {
-                    if (status === 404)
-                        return null;
-                });
+            return $hhtp.get(url + 'Lookup/EmailTypes').then(function (response) {
+                return response.data;
+            }, function (error) {
+                alertService.add("error", "Requested data for Address Types was not found.");
+                console.log(error, 'Unable to retrieve Address Types from the server.');
+                if (status === 404)
+                    return null;
+            });
         },
         getEventTypes: function () {
-            return $hhtp.get(url + 'Lookup/EventTypes')
-                .success(function (response) {
-                    return response.data;
-                }).error(function (data, status, headers, config) {
-                    if (status === 404)
-                        return null;
-                });
+            return $hhtp.get(url + 'Lookup/EventTypes').then(function (response) {
+                return response.data;
+            }, function (error) {
+                alertService.add("error", "Requested data for Address Types was not found.");
+                console.log(error, 'Unable to retrieve Address Types from the server.');
+                if (status === 404)
+                    return null;
+            });
         },
         getPhoneTypes: function () {
-            return $hhtp.get(url + 'Lookup/PhoneTypes')
-                .success(function (response) {
-                    return response.data;
-                }).error(function (data, status, headers, config) {
-                    if (status === 404)
-                        return null;
-                });
+            return $hhtp.get(url + 'Lookup/PhoneTypes').then(function (response) {
+                return response.data;
+            }, function (error) {
+                alertService.add("error", "Requested data for Address Types was not found.");
+                console.log(error, 'Unable to retrieve Address Types from the server.');
+                if (status === 404)
+                    return null;
+            });
         },
         getWebsiteTypes: function () {
-            return $hhtp.get(url + 'Lookup/WebsiteTypes')
-                .success(function (response) {
-                    return response.data;
-                }).error(function (data, status, headers, config) {
-                    if (status === 404)
-                        return null;
-                });
+            return $hhtp.get(url + 'Lookup/WebsiteTypes').then(function (response) {
+                return response.data;
+            }, function (error) {
+                alertService.add("error", "Requested data for Address Types was not found.");
+                console.log(error, 'Unable to retrieve Address Types from the server.');
+                if (status === 404)
+                    return null;
+            });
         },
     };
 }]);
