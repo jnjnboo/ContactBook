@@ -9,6 +9,7 @@ common.controller('commonController', ['$scope', '$rootScope', '$route', '$route
         $scope.$routeParams = $routeParams;
         $rootScope.referrer = $location.$$path;
         $rootScope.closeAlert = alertService.closeAlert;
+        commonCtrl.addNewContact = false;
 
         //** TABLE SORT methods **//
         commonCtrl.changeSort = function (column, sort) {

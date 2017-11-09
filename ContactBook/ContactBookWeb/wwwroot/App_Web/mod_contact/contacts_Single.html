@@ -19,7 +19,7 @@
                             <span class="fa fa-save"></span> 
                             Add
                         </button>
-                        <button class="btn btn-sm btn-alt-primary" ng-click="contactCtrl.closeContact()">
+                        <button class="btn btn-sm btn-alt-primary" ng-click="contactCtrl.cancelSaveNew()">
                             <span class="fa fa-trash-o"></span>
                             <span>Cancel</span>
                         </button>
@@ -80,7 +80,7 @@
                 <div class="form-group">
                     <label for="contactCompany" class="col-lg-2 control-label padTop"><span class="fa fa-building-o"></span></label>
                     <div class="col-lg-5">
-                        <input type="text" class="form-control"  id="contactCompany" placeholder="Name"
+                        <input type="text" class="form-control"  id="contactCompany" placeholder="Company Name"
                                ng-model="contactCtrl.singleContact.company" />
                     </div>
                     <div class="col-lg-5">

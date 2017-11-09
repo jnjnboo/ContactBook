@@ -2,7 +2,6 @@
 
 contact.factory('contactFactory', ['$http', 'CommonConstants', 'alertService', function ($http, CommonConstants, alertService) {
     var url = CommonConstants.apiUrl;
-    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 
     return {
         getContacts: function () {
@@ -31,10 +30,11 @@ contact.factory('contactFactory', ['$http', 'CommonConstants', 'alertService', f
             });
         },
         postContact: function (contact) {
+            contact.userId = 1;
             return $http.post(url + 'Contacts', contact).then(function (response) {
                 return response.data;
             }, function (error) {
-                alertService.add("error", "Requested data was not found.");
+                alertService.add("error", "Unable to save new contact, please try again.");
                 console.log(error, 'Unable to retrieve data from the server.');
             });
         },
@@ -42,7 +42,7 @@ contact.factory('contactFactory', ['$http', 'CommonConstants', 'alertService', f
             return $http.put(url + 'Contacts/' + contact.contactId, contact).then(function (response) {
                 return response.data;
             }, function (error) {
-                alertService.add("error", "Requested data was not found.");
+                alertService.add("error", "Unable to save recent contact edit, please try again.");
                 console.log(error, 'Unable to retrieve data from the server.');
             });
         },
@@ -50,7 +50,7 @@ contact.factory('contactFactory', ['$http', 'CommonConstants', 'alertService', f
            return $http.delete(url + 'Contacts/' + contact.contactId, contact).then(function (response) {
                return response.data;
            }, function (error) {
-               alertService.add("error", "Requested data was not found.");
+               alertService.add("error", "Unable to delete the contact, please try again.");
                console.log(error, 'Unable to retrieve data from the server.');
            });
         }

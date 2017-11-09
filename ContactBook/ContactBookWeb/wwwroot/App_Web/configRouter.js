@@ -6,14 +6,16 @@
             .when('/', {
                 controller: 'contactController',
                 title: 'Contact Book',
-                templateUrl: 'App_Web/mod_contact/vw_contact.html'})
-            .otherwise({ redirectTo: '' });
+                templateUrl: 'App_Web/mod_contact/vw_contact.html',
+            })
+            .otherwise({ redirectTo: '/' });
 
-        if (window.history && window.history.pushState) {
-            // setting base URL: https://docs.angularjs.org/error/$location/nobase
-            $locationProvider.html5Mode({
-                enabled: true,
-                requireBase: false
-            });
-        }
-}]);
+        ///TODO: Cannot get this working with multiple paths
+        //if (window.history && window.history.pushState) {
+        //    // setting base URL: https://docs.angularjs.org/error/$location/nobase
+        //    $locationProvider.html5Mode({
+        //        enabled: true,
+        //        requireBase: false
+        //    });
+        //}
+    }]);

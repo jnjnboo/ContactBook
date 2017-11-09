@@ -1,7 +1,7 @@
 ﻿var contact = angular.module('contactBookApp.contact');
 
-contact.controller('contactController', ['$scope', '$route', '$rootScope', '$routeParams', '$location', 'contactFactory',
-    function ($scope, $route, $rootScope, $routeParams, $location, contactFactory) {
+contact.controller('contactController', ['$scope', '$route', '$routeParams', '$rootScope', '$location', 'contactFactory',
+    function ($scope, $route, $routeParams, $rootScope, $location, contactFactory) {
         var contactCtrl = this;
         var commonCtrl = $scope.commonCtrl;
 
@@ -27,19 +27,15 @@ contact.controller('contactController', ['$scope', '$route', '$rootScope', '$rou
             });
         };
 
+        contactCtrl.closeContact = function () {
+            contactCtrl.singleContact = {};
+            contactCtrl.showSingleContact = false;
+        }
+        //** Edit **//
         contactCtrl.editContact = function () {
             contactCtrl.showSingleContact = true;
             contactCtrl.originalContact = angular.copy(contactCtrl.singleContact);
             contactCtrl.viewOnly = false;
-        };
-
-        contactCtrl.cancelEdit = function () {
-            if (angular.isDefined(contactCtrl.originalContact)) {
-                contactCtrl.singleContact = angular.copy(contactCtrl.originalContact);
-                contactCtrl.viewOnly = true;
-            } else {
-                contactCtrl.closeContact();
-            }
         };
 
         contactCtrl.saveEdit = function () {
@@ -53,10 +49,27 @@ contact.controller('contactController', ['$scope', '$route', '$rootScope', '$rou
             contactCtrl.viewOnly = true;
         };
 
+        contactCtrl.cancelEdit = function () {
+            if (angular.isDefined(contactCtrl.originalContact)) {
+                contactCtrl.singleContact = angular.copy(contactCtrl.originalContact);
+                contactCtrl.viewOnly = true;
+            } else {
+                contactCtrl.closeContact();
+            }
+        };
+
+        //** Add **//
+        contactCtrl.addNewContact = function () {
+            contactCtrl.singleContact = {};
+            contactCtrl.viewOnly = false;
+            contactCtrl.showSingleContact = true;
+            contactCtrl.getDefault();
+        }
         contactCtrl.getDefault = function () {
-            contactFactory.getDefault().then(function (contact) { 
+            contactFactory.getDefault().then(function (contact) {
                 contact.singleContact = angular.copy(contact);
                 contact.singleContact.contactId = undefined;
+                contactCtrl.singleContactIsLoaded = true;
             });
         };
 
@@ -65,32 +78,35 @@ contact.controller('contactController', ['$scope', '$route', '$rootScope', '$rou
                 contactCtrl.originalContact = {};
             }
 
-            contactFactory.postContact(contactCtrl.singleContact).then(function () {
+            contactFactory.postContact(contactCtrl.singleContact).then(function (contact) {
+                contactCtrl.singleContact = angular.copy(contact);
+                contactCtrl.viewOnly = true;
                 contactCtrl.getAllScopes();
             });
-            contactCtrl.viewOnly = true;
         };
 
+        contactCtrl.cancelSaveNew = function () {
+            contactCtrl.singleContact = {};
+            contactCtrl.showSingleContact = false;
+        };
+
+        //** Delete **//
         contactCtrl.deleteContact = function () {
             contactFactory.deleteContact(contactCtrl.singleContact);
-            contactCtrl.singleContact = {};
-            contactCtrl.showSingleContact = false;
-        };
-
-        contactCtrl.closeContact = function () {
-            contactCtrl.singleContact = {};
-            contactCtrl.showSingleContact = false;
         };
 
         $scope.init = function () {
             contactCtrl.allLoaded = true;
+            contactCtrl.singleContact = {};
 
-            if ($route.current.$$route.addNew) {
-                contactCtrl.showSingleContact = true;
+            if (commonCtrl.addNewContact) {
+                commonCtrl.addNewContact = false;
+                contactCtrl.addNewContact();
             }
-
-            contactCtrl.showSingleContact = true;
-            contactCtrl.viewOnly = true;
-            contactCtrl.getSingleContact(1, 5);
+            else {
+                contactCtrl.showSingleContact = true;
+                contactCtrl.viewOnly = true;
+                contactCtrl.getSingleContact(1, 5);
+            }
         };
     }]);
