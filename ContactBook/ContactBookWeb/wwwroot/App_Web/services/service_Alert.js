@@ -5,8 +5,8 @@ appServices.service('alertService', function ($rootScope) {
     $rootScope.alerts = [];
 
     alertService.add = function (type, msg) {
-        $rootScope.alerts.push({'type': type, 'msg': msg});
-    }
+        $rootScope.alerts.push({ 'type': type, 'msg': msg });
+    };
 
     alertService.closeAlert = function (index) {
         $rootScope.alerts.splice(index, 1);

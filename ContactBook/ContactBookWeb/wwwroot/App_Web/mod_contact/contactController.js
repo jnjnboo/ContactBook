@@ -17,7 +17,7 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
             contactFactory.getContacts().then(function (contacts) {
                 if (angular.isDefined(contacts)) {
                     contactCtrl.contacts = angular.copy(contacts);
-                    if (angular.isDefined(selected)){
+                    if (angular.isDefined(selected)) {
                         var found = $filter('filter')(contactCtrl.contacts, { contactId: selected.contactId }, true);
                         if (found.length) {
                             contactCtrl.selectedContact = found[0];
@@ -35,11 +35,11 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
         };
 
         //** SORT All Contacts table  **//
-        commonCtrl.changeSort = function (column, sort) {
-            $scope.changeSort(column, sort);
+        contactCtrl.changeSort = function (column, sort) {
+            contactCtrl.changeSort(column, sort);
         };
 
-        $scope.changeSort = function (column, sort) {
+        contactCtrl.changeSort = function (column, sort) {
             if (sort.column === column) {
                 sort.descending = !sort.descending;
             } else {
@@ -48,7 +48,7 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
             }
         };
 
-        $scope.sortClass = function (column, sort) {
+        contactCtrl.sortClass = function (column, sort) {
             if (sort.column === column) {
                 var direction = "up";
                 if (!sort.descending)
@@ -59,7 +59,7 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
 
         //** Single Contact **//
         contactCtrl.viewContact = function (contactId, selected) {
-            if (angular.isDefined(selected)){
+            if (angular.isDefined(selected)) {
                 contactCtrl.selectedContact = selected;
             }
             contactCtrl.singleContact = {};
@@ -139,6 +139,7 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
             contactCtrl.selectedContact = {};
             contactCtrl.viewOnly = false;
             contactCtrl.showSingleContact = true;
+
             contactCtrl.getDefault();
         };
 
@@ -155,10 +156,13 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
                 contactCtrl.originalContact = {};
             }
 
+            contactCtrl.singleContact.userId = 1; //update when we have new user
             contactFactory.postContact(contactCtrl.singleContact).then(function (contact) {
-                contactCtrl.singleContact = angular.copy(contact);
-                contactCtrl.viewOnly = true;
-                contactCtrl.getAllContacts();
+                if (angular.isDefined(contact)) {
+                    contactCtrl.singleContact = angular.copy(contact);
+                    contactCtrl.viewOnly = true;
+                    contactCtrl.getAllContacts();
+                }
             });
         };
 

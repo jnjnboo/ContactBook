@@ -4,8 +4,8 @@
             <div class="pull-right">
                 <i ng-show="!contactCtrl.contactsAreLoaded" class="fa fa-spinner fa-spin"></i>
                 <span class="label label-alt-default" style="padding:1px 4px 1px 4px;"
-                      ng-show="contactCtrl.contactsAreLoaded" title="Refresh" ng-click="contactCtrl.resetAndLoadScopes()">
-                    <span class="fa fa-refresh"></span>
+                      ng-show="contactCtrl.contactsAreLoaded" title="Refresh" ng-click="contactCtrl.addNewContact()">
+                    <span class="fa fa-plus"></span>
                 </span>
             </div>
             <div>
@@ -29,9 +29,9 @@
                 <tr>
                     <th class="col-xs-1"></th>
                     <th class="col-xs-9">
-                        <button class="btn btn-sm btn-alt-primary" ng-click="changeSort('name',contactCtrl.sortContacts)">
+                        <button class="btn btn-sm btn-alt-primary" ng-click="contactCtrl.changeSort('name',contactCtrl.sortContacts)">
                             Name
-                            <span ng-class="sortClass('name',contactCtrl.sortContacts)"></span>
+                            <span ng-class="contactCtrl.sortClass('name',contactCtrl.sortContacts)"></span>
                         </button>
                     </th>
                     <th class="col-xs-1"></th>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ContactBookApi.Models;
@@ -27,8 +28,14 @@ namespace ContactBookApi.Repositories
         /// <returns>Async Task, with the number of objects saved to the repository.</returns>
         public async Task<int> AddContact(Contact contact)
         {
+            CleanContact(contact);
             context.Contact.Add(contact);
             return await context.SaveChangesAsync();
+        }
+
+        private void CleanContact(Contact contact)
+        {
+            
         }
 
         public async Task<Contact> GetContact(int id)

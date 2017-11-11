@@ -35,7 +35,14 @@ namespace ContactBookApi.Controllers
         [HttpGet]
         public IActionResult GetDefault()
         {
-            var results = new Contact();
+            var results = new Contact
+            {
+                Address = new Address[] { new Address() },
+                Email = new Email[] { new Email() },
+                Event = new Event[] { new Event() },
+                Phone = new Phone[] { new Phone() },
+                Website = new Website[] { new Website() },
+            };
 
             return Ok(results);
         }
