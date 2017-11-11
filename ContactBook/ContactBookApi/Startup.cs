@@ -54,8 +54,10 @@ namespace ContactBookApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
-                loggerFactory.AddConsole();
+                loggerFactory.AddConsole(LogLevel.Debug, true);
             }
+
+            loggerFactory.AddLog4Net();
 
             app.UseCors("SiteCorsPolicy");
 

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace ContactBookApi.Models
+namespace ContactBookWeb.Models
 {
     public partial class ContactBookContext : DbContext
     {

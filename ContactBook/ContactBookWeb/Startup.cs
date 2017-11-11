@@ -20,6 +20,8 @@ namespace ContactBookWeb
                 loggerFactory.AddConsole();
             }
 
+            loggerFactory.AddLog4Net();
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
         }

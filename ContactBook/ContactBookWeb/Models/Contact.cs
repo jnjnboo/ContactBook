@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ContactBookApi.Models
+namespace ContactBookWeb.Models
 {
     public partial class Contact
     {

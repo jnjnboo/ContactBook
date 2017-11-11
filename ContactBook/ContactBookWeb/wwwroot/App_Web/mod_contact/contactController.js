@@ -32,7 +32,7 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
         contactCtrl.resetAndLoadScopes = function () {
             contactCtrl.searchContacts = "";
             contactCtrl.getAllContacts();
-        }
+        };
 
         //** SORT All Contacts table  **//
         commonCtrl.changeSort = function (column, sort) {
@@ -84,7 +84,7 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
             contactCtrl.originalContact = {};
             contactCtrl.deleteContactConfirmation = false;
             contactCtrl.showSingleContact = false;
-        }
+        };
 
         //** Edit **//
         contactCtrl.editContact = function (contactId, selected) {
@@ -140,7 +140,7 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
             contactCtrl.viewOnly = false;
             contactCtrl.showSingleContact = true;
             contactCtrl.getDefault();
-        }
+        };
 
         contactCtrl.getDefault = function () {
             contactFactory.getDefault().then(function (contact) {

@@ -104,6 +104,14 @@ namespace ContactBookApi.Controllers
 
             var numberSaved = await ContactRepository.AddContact(contact);
 
+            if (numberSaved < 1)
+            {
+                var message = "Unable to save changes. " +
+                    "Try again, and if the problem persists, " +
+                    "see your system administrator.";
+                return StatusCode(500, message);
+            }
+
             return CreatedAtAction("GetContact", new { id = contact.ContactId }, contact);
         }
 
