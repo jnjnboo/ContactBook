@@ -14,27 +14,27 @@ namespace ContactBookApi.Repositories
 
         public async Task<IEnumerable<LookupModels.AddressTypes>> GetAddressTypes()
         {
-            return await context.AddressType.Select(at => new LookupModels.AddressTypes { Id = at.AddressTypeId, Name = at.Name }).ToListAsync();
+            return await context.AddressType.Select(at => new LookupModels.AddressTypes { AddressTypeId = at.AddressTypeId, Name = at.Name }).ToListAsync();
         }
 
         public async Task<IEnumerable<LookupModels.EmailTypes>> GetEmailTypes()
         {
-            return await context.EmailType.Select(et => new LookupModels.EmailTypes { Id = et.EmailTypeId, Name = et.Name }).ToListAsync();
+            return await context.EmailType.Select(et => new LookupModels.EmailTypes { EmailTypeId = et.EmailTypeId, Name = et.Name }).ToListAsync();
         }
 
         public async Task<IEnumerable<LookupModels.EventTypes>> GetEventTypes()
         {
-            return await context.EventType.Select(at => new LookupModels.EventTypes { Id = at.EventTypeId, Name = at.Name }).ToListAsync();
+            return await context.EventType.Select(at => new LookupModels.EventTypes { EventTypeId = at.EventTypeId, Name = at.Name }).ToListAsync();
         }
 
         public async Task<IEnumerable<LookupModels.PhoneTypes>> GetPhoneTypes()
         {
-            return await context.PhoneType.Select(at => new LookupModels.PhoneTypes { Id = at.PhoneTypeId, Name = at.Name }).ToListAsync();
+            return await context.PhoneType.Select(at => new LookupModels.PhoneTypes { PhoneTypeId = at.PhoneTypeId, Name = at.Name }).ToListAsync();
         }
 
         public async Task<IEnumerable<LookupModels.WebsiteTypes>> GetWebsiteTypes()
         {
-            return await context.WebsiteType.Select(at => new LookupModels.WebsiteTypes { Id = at.WebsiteTypeId, Name = at.Name }).ToListAsync();
+            return await context.WebsiteType.Select(at => new LookupModels.WebsiteTypes { WebsiteTypeId = at.WebsiteTypeId, Name = at.Name }).ToListAsync();
         }
     }
 }

@@ -72,7 +72,6 @@
                                ng-model="contactCtrl.singleContact.name" required />
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label for="preferredName" class="col-lg-2 control-label padTop">Preferred</label>
                     <div class="col-lg-10">
@@ -80,7 +79,6 @@
                                ng-model="contactCtrl.singleContact.preferredName" />
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label for="previousNames" class="col-lg-2 control-label padTop">Other</label>
                     <div class="col-lg-10">
@@ -88,7 +86,6 @@
                                ng-model="contactCtrl.singleContact.previousNames" />
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label for="contactCompany" class="col-lg-2 control-label padTop"><span class="fa fa-building-o"></span></label>
                     <div class="col-lg-5">
@@ -100,7 +97,6 @@
                                ng-model="contactCtrl.singleContact.jobTitle" />
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label for="contactRelationship" class="col-lg-2 control-label padTop"><span class="fa fa-cogs"></span></label>
                     <div class="col-lg-10">
@@ -108,7 +104,24 @@
                                ng-model="contactCtrl.singleContact.relationship" />
                     </div>
                 </div>
-
+                <div class="form-group">
+                    <label for="addEmail" class="col-lg-2 control-label padTop"><span class="fa fa-envelope-open-o"></span></label>
+                    <label class="col-lg-3 control-label">Email Addresses</label>
+                    <div class="col-lg-7"/>
+                    </div>
+                <div class="form-group">
+                </div>
+                <div ng-repeat="email in contactCtrl.singleContact.email">
+                    <div email-item="email"></div>
+                </div>
+                <div class="form-group">
+                    <label for="addEmail" class="col-lg-2 control-label padTop"></label>
+                    <div class="col-lg-10">
+                        <button class="btn btn-sm btn-alt-primary" ng-click="contactCtrl.addEmail()">
+                            <span class="fa fa-plus"></span>
+                        </button>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="contactNotes" class="col-lg-2 control-label padTop"><span class="fa fa-list-alt"></span></label>
                     <div class="col-lg-10">
@@ -116,6 +129,7 @@
                                   ng-model="contactCtrl.singleContact.notes"></textarea>
                     </div>
                 </div>
+
             </fieldset>
         </form>
 
@@ -130,31 +144,25 @@
                         <label id="contactName" ng-bind="contactCtrl.singleContact.name"></label>
                     </div>
                 </div>
-
                 <div class="form-group" ng-if="contactCtrl.singleContact.preferredName">
                     <label for="preferredName" class="col-lg-2 control-label"></label>
                     <div class="col-lg-10">
                         <label id="contactName" ng-bind="contactCtrl.singleContact.preferredName"></label>
                     </div>
                 </div>
-
                 <div class="form-group" ng-if="contactCtrl.singleContact.previousNames">
                     <label for="previousNames" class="col-lg-2 control-label"></label>
                     <div class="col-lg-10">
                         <label id="contactName" ng-bind="contactCtrl.singleContact.previousNames"></label>
                     </div>
                 </div>
-
                 <div class="form-group" ng-if="contactCtrl.singleContact.company">
                     <label for="contactCompany" class="col-lg-2 control-label"><span class="fa fa-building-o"></span></label>
-                    <div class="col-lg-5 view-label">
+                    <div class="col-lg-10 view-label">
                         <label id="contactName" class="break-word" ng-bind="contactCtrl.singleContact.company"></label>
-                    </div>
-                    <div class="col-lg-5  view-label">
                         <label id="contactName" class="break-word" ng-bind="contactCtrl.singleContact.jobTitle"></label>
                     </div>
                 </div>
-
                 <div class="form-group" ng-if="contactCtrl.singleContact.relationship">
                     <label for="contactRelationship" class="col-lg-2 control-label"><span class="fa fa-cogs"></span></label>
                     <div class="col-lg-10 view-label">
@@ -162,6 +170,9 @@
                     </div>
                 </div>
 
+                <div ng-repeat="email in contactCtrl.singleContact.email">
+                    <div email-item="email"></div>
+                </div>
                 <div class="form-group" ng-if="contactCtrl.singleContact.notes">
                     <label for="contactNotes" class="col-lg-2 control-label"><span class="fa fa-list-alt"></span></label>
                     <div class="col-lg-10 view-label">

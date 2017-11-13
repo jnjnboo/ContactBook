@@ -1,0 +1,31 @@
+﻿<div class="form-group" id="item.controlId" ng-show="!$parent.contactCtrl.viewOnly">
+    <label for="email" class="col-lg-2 control-label"></label>
+    <div class="col-lg-6">
+        <input type="text" class="form-control" id="emailAddress" placeholder="Email Address" required
+               ng-model="item.emailAddress" />
+    </div>
+    <div class="col-lg-2" style="margin-left:-15px">
+        <select class="btn btn-sm btn-alt-link"
+                ng-model="item.emailType"
+                ng-init="item.emailType = item.emailType || $parent.commonCtrl.emailTypes[item.dropdown]"
+                ng-options="emailType as emailType.name for emailType in $parent.commonCtrl.emailTypes track by emailType.emailTypeId">
+            <option style="display:none" value="">Email Type</option>
+        </select>
+    </div>
+    <div class="col-lg-1" style="margin-left:25px">
+        <button class="btn btn-sm btn-alt-primary" ng-click="$parent.contactCtrl.deleteEmail(item)">
+            <span class="fa fa-minus"></span>
+        </button>
+    </div>
+</div>
+
+<div class="form-group" id="item.controlId" style="margin-top:-20px" ng-show="$parent.contactCtrl.viewOnly">
+    <label for="email" class="col-lg-2 control-label"><span class="fa fa-envelope-open-o"></span></label>
+    <div class="col-lg-10 view-label">
+        <label id="email" ng-bind="item.emailAddress"></label>
+        <span ng-if="item.emailTypeId">
+            <label>- </label>
+        </span>
+        <label> {{$parent.commonCtrl.emailTypes[item.emailTypeId-1].name}}</label>
+    </div>
+</div>

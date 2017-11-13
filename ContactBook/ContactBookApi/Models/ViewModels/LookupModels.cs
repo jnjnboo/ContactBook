@@ -9,31 +9,31 @@ namespace ContactBookApi.Models.ViewModels
     {
         public class AddressTypes
         {
-            public int Id { get; set; }
+            public int AddressTypeId { get; set; }
             public string Name { get; set; }
         }
         
         public class EmailTypes
         {
-            public int Id { get; set; }
+            public int EmailTypeId { get; set; }
             public string Name { get; set; }
         }
 
         public class EventTypes
         {
-            public int Id { get; set; }
+            public int EventTypeId { get; set; }
             public string Name { get; set; }
         }
 
         public class PhoneTypes
         {
-            public int Id { get; set; }
+            public int PhoneTypeId { get; set; }
             public string Name { get; set; }
         }
 
         public class WebsiteTypes
         {
-            public int Id { get; set; }
+            public int WebsiteTypeId { get; set; }
             public string Name { get; set; }
         }
     }

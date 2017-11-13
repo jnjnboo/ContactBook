@@ -1,7 +1,7 @@
 ﻿var common = angular.module('contactBookApp.common');
 
-common.controller('commonController', ['$scope', '$rootScope', '$route', '$routeParams', '$location', 'alertService',
-    function ($scope, $rootScope, $route, $routeParams, $location, alertService) {
+common.controller('commonController', ['$scope', '$rootScope', '$route', '$routeParams', '$location', 'alertService', 'lookupFactory',
+    function ($scope, $rootScope, $route, $routeParams, $location, alertService, lookupFactory) {
         var commonCtrl = this;
 
         $scope.Title = 'Common Controller';
@@ -9,11 +9,29 @@ common.controller('commonController', ['$scope', '$rootScope', '$route', '$route
         $scope.$routeParams = $routeParams;
         $rootScope.referrer = $location.$$path;
         $rootScope.closeAlert = alertService.closeAlert;
-
+        
         commonCtrl.isNavCollapsed = true;
+
+        commonCtrl.getAllLookups = function () {
+            lookupFactory.getAddressTypes().then(function (addressTypes) {
+                if (angular.isDefined(addressTypes)) {
+                    commonCtrl.addressTypes = angular.copy(addressTypes);
+                } else {
+                    commonCtrl.addressTypes = [];
+                }
+            });
+
+            lookupFactory.getEmailTypes().then(function (emailTypes) {
+                if (angular.isDefined(emailTypes)) {
+                    commonCtrl.emailTypes = angular.copy(emailTypes);
+                } else {
+                    commonCtrl.emailTypes = [];
+                }
+            });
+        };
 
         //** INIT **//
         $scope.init = function () {
-
+            commonCtrl.getAllLookups();
         };
     }]);

@@ -104,15 +104,15 @@ namespace ContactBookApi.Test
 
         private IEnumerable<LookupModels.AddressTypes> GetTestAddressTypes()
         {
-            return new List<LookupModels.AddressTypes> { new LookupModels.AddressTypes { Id = 1, Name = "Home" } };
+            return new List<LookupModels.AddressTypes> { new LookupModels.AddressTypes { AddressTypeId = 1, Name = "Home" } };
         }
 
         private IEnumerable<LookupModels.EmailTypes> GetTestEmailTypes()
         {
             return new List<LookupModels.EmailTypes>
             {
-                new LookupModels.EmailTypes { Id = 1, Name = "Business" },
-                new LookupModels.EmailTypes { Id = 2, Name = "Personal" }
+                new LookupModels.EmailTypes { EmailTypeId = 1, Name = "Business" },
+                new LookupModels.EmailTypes { EmailTypeId = 2, Name = "Personal" }
             };
         }
 
@@ -120,9 +120,9 @@ namespace ContactBookApi.Test
         {
             return new List<LookupModels.EventTypes>
             {
-                new LookupModels.EventTypes { Id = 1, Name = "Anniversary" },
-                new LookupModels.EventTypes { Id = 2, Name = "Birthday" },
-                new LookupModels.EventTypes { Id = 3, Name = "Other" }
+                new LookupModels.EventTypes { EventTypeId = 1, Name = "Anniversary" },
+                new LookupModels.EventTypes { EventTypeId = 2, Name = "Birthday" },
+                new LookupModels.EventTypes { EventTypeId = 3, Name = "Other" }
             };
         }
 
@@ -130,11 +130,11 @@ namespace ContactBookApi.Test
         {
             return new List<LookupModels.PhoneTypes>
             {
-                new LookupModels.PhoneTypes { Id = 1, Name = "Home" },
-                new LookupModels.PhoneTypes { Id = 2, Name = "Business" },
-                new LookupModels.PhoneTypes { Id = 3, Name = "Home Fax" },
-                new LookupModels.PhoneTypes { Id = 4, Name = "Business Fax" },
-                new LookupModels.PhoneTypes { Id = 5, Name = "Pager" }
+                new LookupModels.PhoneTypes { PhoneTypeId = 1, Name = "Home" },
+                new LookupModels.PhoneTypes { PhoneTypeId = 2, Name = "Business" },
+                new LookupModels.PhoneTypes { PhoneTypeId = 3, Name = "Home Fax" },
+                new LookupModels.PhoneTypes { PhoneTypeId = 4, Name = "Business Fax" },
+                new LookupModels.PhoneTypes { PhoneTypeId = 5, Name = "Pager" }
             };
         }
 
@@ -142,10 +142,10 @@ namespace ContactBookApi.Test
         {
             return new List<LookupModels.WebsiteTypes>
             {
-                new LookupModels.WebsiteTypes { Id = 1, Name = "Personal" },
-                new LookupModels.WebsiteTypes { Id = 2, Name = "Business" },
-                new LookupModels.WebsiteTypes { Id = 3, Name = "Blog" },
-                new LookupModels.WebsiteTypes { Id = 4, Name = "Profile" }
+                new LookupModels.WebsiteTypes { WebsiteTypeId = 1, Name = "Personal" },
+                new LookupModels.WebsiteTypes { WebsiteTypeId = 2, Name = "Business" },
+                new LookupModels.WebsiteTypes { WebsiteTypeId = 3, Name = "Blog" },
+                new LookupModels.WebsiteTypes { WebsiteTypeId = 4, Name = "Profile" }
             };
         }
     }

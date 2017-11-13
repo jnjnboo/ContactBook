@@ -1,11 +1,11 @@
 ﻿var lookup = angular.module('contactBookApp.lookup');
 
 lookup.factory('lookupFactory', ['$http', 'CommonConstants', function ($http, CommonConstants) {
-    var url = CommonConstants.apiUrl
+    var url = CommonConstants.apiUrl;
 
     return {
         getAddressTypes: function () {
-            return $hhtp.get(url + 'Lookup/AddressTypes').then(function (response) {
+            return $http.get(url + 'Lookup/AddressTypes').then(function (response) {
                 return response.data;
             }, function (error) {
                 alertService.add("error", "Requested data for Address Types was not found.");
@@ -15,7 +15,7 @@ lookup.factory('lookupFactory', ['$http', 'CommonConstants', function ($http, Co
             });
         },
         getEmailTypes: function () {
-            return $hhtp.get(url + 'Lookup/EmailTypes').then(function (response) {
+            return $http.get(url + 'Lookup/EmailTypes').then(function (response) {
                 return response.data;
             }, function (error) {
                 alertService.add("error", "Requested data for Address Types was not found.");
@@ -25,7 +25,7 @@ lookup.factory('lookupFactory', ['$http', 'CommonConstants', function ($http, Co
             });
         },
         getEventTypes: function () {
-            return $hhtp.get(url + 'Lookup/EventTypes').then(function (response) {
+            return $http.get(url + 'Lookup/EventTypes').then(function (response) {
                 return response.data;
             }, function (error) {
                 alertService.add("error", "Requested data for Address Types was not found.");
@@ -35,7 +35,7 @@ lookup.factory('lookupFactory', ['$http', 'CommonConstants', function ($http, Co
             });
         },
         getPhoneTypes: function () {
-            return $hhtp.get(url + 'Lookup/PhoneTypes').then(function (response) {
+            return $http.get(url + 'Lookup/PhoneTypes').then(function (response) {
                 return response.data;
             }, function (error) {
                 alertService.add("error", "Requested data for Address Types was not found.");
@@ -53,6 +53,6 @@ lookup.factory('lookupFactory', ['$http', 'CommonConstants', function ($http, Co
                 if (status === 404)
                     return null;
             });
-        },
+        }
     };
 }]);

@@ -15,9 +15,12 @@ namespace ContactBookApi.Repositories
         public async Task<IEnumerable<Contact>> GetContacts()
         {
             return await context.Contact
-                .Include(c => c.Website)
+                .Include(c => c.Address)
                 .Include(c => c.Email)
+                .Include(c => c.Event)
                 .Include(c => c.Phone)
+                .Include(c => c.Website)
+                .OrderBy(c => c.Name)
                 .ToListAsync();
         }
 
@@ -35,16 +38,16 @@ namespace ContactBookApi.Repositories
 
         private void CleanContact(Contact contact)
         {
-            
+
         }
 
         public async Task<Contact> GetContact(int id)
         {
             return await context.Contact
-                .Include(c => c.Email)
-                .Include(c => c.Phone)
                 .Include(c => c.Address)
+                .Include(c => c.Email)
                 .Include(c => c.Event)
+                .Include(c => c.Phone)
                 .Include(c => c.Website)
                 .SingleOrDefaultAsync(m => m.ContactId == id);
         }
@@ -70,11 +73,13 @@ namespace ContactBookApi.Repositories
         public async Task<bool> UpdateContact(Contact contact)
         {
             var isSaved = false;
-            context.Entry(contact).State = EntityState.Modified;
-            var currentContact = await GetContact(contact.ContactId);
+            var existingContact = await GetContact(contact.ContactId);
+
             try
             {
-                context.Entry(currentContact).CurrentValues.SetValues(contact);
+                UpdateEmailEntries(contact, existingContact);
+                context.Entry(existingContact).CurrentValues.SetValues(contact);
+
                 await context.SaveChangesAsync();
                 isSaved = true;
             }
@@ -84,6 +89,42 @@ namespace ContactBookApi.Repositories
             }
 
             return isSaved;
+        }
+
+        private void UpdateEmailEntries(Contact contact, Contact existingContact)
+        {
+            foreach (var existingEmail in existingContact.Email.ToList())
+            {
+                if (!contact.Email.Any(e => e.EmailId == existingEmail.EmailId))
+                {
+                    context.Email.Remove(existingEmail);
+                }
+            }
+            foreach (var emailModel in contact.Email)
+            {
+                if(emailModel.EmailType != null)
+                {
+                    emailModel.EmailTypeId = emailModel.EmailType.EmailTypeId;
+                }
+
+                var existingEmail = existingContact.Email
+                    .Where(e => e.EmailId == emailModel.EmailId)
+                    .SingleOrDefault();
+                if (existingEmail != null)
+                {
+                    context.Entry(existingEmail).CurrentValues.SetValues(emailModel);
+                }
+                else
+                {
+                    var newEmail = new Email
+                    {
+                        ContactId = existingContact.ContactId,
+                        EmailAddress = emailModel.EmailAddress,
+                        EmailTypeId = emailModel.EmailTypeId
+                    };
+                    existingContact.Email.Add(newEmail);
+                }
+            }
         }
 
         public async Task<bool> ContactExists(int id)
