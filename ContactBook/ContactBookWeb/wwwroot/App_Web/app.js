@@ -1,4 +1,4 @@
-﻿angular.module('contactBookApp', ['ui.bootstrap', 'ngCookies']);
+﻿angular.module('contactBookApp', ['ui.bootstrap', 'ngCookies', 'ngAnimate']);
 angular.module('contactBookApp.routes', []);
 angular.module('contactBookApp.services', []);
 angular.module('contactBookApp.common', []);

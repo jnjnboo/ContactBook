@@ -10,6 +10,8 @@ common.controller('commonController', ['$scope', '$rootScope', '$route', '$route
         $rootScope.referrer = $location.$$path;
         $rootScope.closeAlert = alertService.closeAlert;
 
+        commonCtrl.isNavCollapsed = true;
+
         //** INIT **//
         $scope.init = function () {
 
