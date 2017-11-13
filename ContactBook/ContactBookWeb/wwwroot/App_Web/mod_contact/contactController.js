@@ -165,9 +165,6 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
         contactCtrl.addNewContact = function () {
             contactCtrl.singleContact = {};
             contactCtrl.selectedContact = {};
-            contactCtrl.viewOnly = false;
-            contactCtrl.showSingleContact = true;
-
             contactCtrl.getDefault();
         };
 
@@ -175,6 +172,8 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
             contactFactory.getDefault().then(function (contact) {
                 contact.singleContact = angular.copy(contact);
                 contact.singleContact.contactId = undefined;
+                contactCtrl.viewOnly = false;
+                contactCtrl.showSingleContact = true;
                 contactCtrl.singleContactIsLoaded = true;
             });
         };
