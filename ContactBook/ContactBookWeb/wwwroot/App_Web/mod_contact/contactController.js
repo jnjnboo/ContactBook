@@ -38,15 +38,15 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
             if (!angular.isDefined(contactCtrl.singleContact.email)) {
                 contactCtrl.singleContact.email = [];
             }
-            contactCtrl.singleContact.email.push({ emailAddress: '' })
-        }
+            contactCtrl.singleContact.email.push({ emailAddress: '' });
+        };
 
         contactCtrl.deleteEmail = function (item) {
             var index = contactCtrl.singleContact.email.indexOf(item);
             if (index > -1) {
                 contactCtrl.singleContact.email.splice(index, 1);
             }
-        }
+        };
         //** SORT All Contacts table  **//
         contactCtrl.changeSort = function (column, sort) {
             contactCtrl.changeSort(column, sort);
@@ -163,7 +163,6 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
             contactFactory.getDefault().then(function (contact) {
                 contact.singleContact = angular.copy(contact);
                 contact.singleContact.contactId = undefined;
-                contact.singleContact.createdDate = undefined;
                 contactCtrl.singleContactIsLoaded = true;
             });
         };

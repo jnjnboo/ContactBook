@@ -31,14 +31,9 @@ namespace ContactBookApi.Repositories
         /// <returns>Async Task, with the number of objects saved to the repository.</returns>
         public async Task<int> AddContact(Contact contact)
         {
-            CleanContact(contact);
+            SetCollectionTypeIds(contact);
             context.Contact.Add(contact);
             return await context.SaveChangesAsync();
-        }
-
-        private void CleanContact(Contact contact)
-        {
-
         }
 
         public async Task<Contact> GetContact(int id)
@@ -91,6 +86,28 @@ namespace ContactBookApi.Repositories
             return isSaved;
         }
 
+        public async Task<bool> ContactExists(int id)
+        {
+            return await context.Contact.AnyAsync(e => e.ContactId == id);
+        }
+
+        private static void SetCollectionTypeIds(Contact contact)
+        {
+            foreach (var email in contact.Email)
+            {
+                email.Contact = null;
+                email.EmailTypeId = email.EmailType.EmailTypeId;
+                email.EmailType = null;
+            }
+
+            foreach (var phone in contact.Phone)
+            {
+                phone.Contact = null;
+                phone.PhoneTypeId = phone.PhoneType.PhoneTypeId;
+                phone.PhoneType = null;
+            }
+        }
+
         private void UpdateEmailEntries(Contact contact, Contact existingContact)
         {
             foreach (var existingEmail in existingContact.Email.ToList())
@@ -100,9 +117,10 @@ namespace ContactBookApi.Repositories
                     context.Email.Remove(existingEmail);
                 }
             }
+
             foreach (var emailModel in contact.Email)
             {
-                if(emailModel.EmailType != null)
+                if (emailModel.EmailType != null)
                 {
                     emailModel.EmailTypeId = emailModel.EmailType.EmailTypeId;
                 }
@@ -127,9 +145,41 @@ namespace ContactBookApi.Repositories
             }
         }
 
-        public async Task<bool> ContactExists(int id)
+        private void UpdatePhoneEntries(Contact contact, Contact existingContact)
         {
-            return await context.Contact.AnyAsync(e => e.ContactId == id);
+            foreach (var existingPhone in existingContact.Phone.ToList())
+            {
+                if (!contact.Phone.Any(e => e.PhoneId == existingPhone.PhoneId))
+                {
+                    context.Phone.Remove(existingPhone);
+                }
+            }
+
+            foreach (var phoneModel in contact.Phone)
+            {
+                if (phoneModel.PhoneType != null)
+                {
+                    phoneModel.PhoneTypeId = phoneModel.PhoneType.PhoneTypeId;
+                }
+
+                var existingEmail = existingContact.Email
+                    .Where(e => e.EmailId == phoneModel.PhoneId)
+                    .SingleOrDefault();
+                if (existingEmail != null)
+                {
+                    context.Entry(existingEmail).CurrentValues.SetValues(phoneModel);
+                }
+                else
+                {
+                    var newPhone = new Phone
+                    {
+                        ContactId = existingContact.ContactId,
+                        Number = phoneModel.Number,
+                        PhoneTypeId = phoneModel.PhoneTypeId
+                    };
+                    existingContact.Phone.Add(newPhone);
+                }
+            }
         }
     }
 }

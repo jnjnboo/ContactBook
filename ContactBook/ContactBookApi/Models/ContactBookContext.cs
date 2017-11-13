@@ -6,7 +6,9 @@ namespace ContactBookApi.Models
 {
     public partial class ContactBookContext : DbContext
     {
-        public ContactBookContext(DbContextOptions<ContactBookContext> options) : base(options) { }
+        public ContactBookContext(DbContextOptions<ContactBookContext> options) : base(options)
+        {
+        }
 
         public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<AddressType> AddressType { get; set; }
