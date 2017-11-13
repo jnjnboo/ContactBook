@@ -73,6 +73,7 @@ namespace ContactBookApi.Repositories
             try
             {
                 UpdateEmailEntries(contact, existingContact);
+                UpdatePhoneEntries(contact, existingContact);
                 context.Entry(existingContact).CurrentValues.SetValues(contact);
 
                 await context.SaveChangesAsync();
@@ -162,12 +163,12 @@ namespace ContactBookApi.Repositories
                     phoneModel.PhoneTypeId = phoneModel.PhoneType.PhoneTypeId;
                 }
 
-                var existingEmail = existingContact.Email
-                    .Where(e => e.EmailId == phoneModel.PhoneId)
+                var existingPhone = existingContact.Phone
+                    .Where(e => e.PhoneId == phoneModel.PhoneId)
                     .SingleOrDefault();
-                if (existingEmail != null)
+                if (existingPhone != null)
                 {
-                    context.Entry(existingEmail).CurrentValues.SetValues(phoneModel);
+                    context.Entry(existingPhone).CurrentValues.SetValues(phoneModel);
                 }
                 else
                 {

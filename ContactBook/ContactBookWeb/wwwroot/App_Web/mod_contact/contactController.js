@@ -34,6 +34,7 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
             contactCtrl.getAllContacts();
         };
 
+        //** Collections **//
         contactCtrl.addEmail = function () {
             if (!angular.isDefined(contactCtrl.singleContact.email)) {
                 contactCtrl.singleContact.email = [];
@@ -45,6 +46,20 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
             var index = contactCtrl.singleContact.email.indexOf(item);
             if (index > -1) {
                 contactCtrl.singleContact.email.splice(index, 1);
+            }
+        };
+
+        contactCtrl.addPhone = function () {
+            if (!angular.isDefined(contactCtrl.singleContact.phone)) {
+                contactCtrl.singleContact.phone = [];
+            }
+            contactCtrl.singleContact.phone.push({  number: '' });
+        };
+
+        contactCtrl.deletePhone = function (item) {
+            var index = contactCtrl.singleContact.phone.indexOf(item);
+            if (index > -1) {
+                contactCtrl.singleContact.phone.splice(index, 1);
             }
         };
         //** SORT All Contacts table  **//
@@ -110,9 +125,6 @@ contact.controller('contactController', ['$scope', '$route', '$routeParams', '$r
                     if (angular.isDefined(contact)) {
                         contactCtrl.singleContact = angular.copy(contact);
                         contactCtrl.originalContact = angular.copy(contact);
-                        if (angular.isDefined(contactCtrl.singleContact.email[0])){
-                            contactCtrl.singleContact.email[0].emailType = commonCtrl.emailTypes[contactCtrl.singleContact.email[0].emailTypeId - 1];
-                        }
                         contactCtrl.singleContactIsLoaded = true;
                     } else {
                         contactCtrl.closeContact();

@@ -28,6 +28,14 @@ common.controller('commonController', ['$scope', '$rootScope', '$route', '$route
                     commonCtrl.emailTypes = [];
                 }
             });
+
+            lookupFactory.getPhoneTypes().then(function (phoneTypes) {
+                if (angular.isDefined(phoneTypes)) {
+                    commonCtrl.phoneTypes = angular.copy(phoneTypes);
+                } else {
+                    commonCtrl.phoneTypes = [];
+                }
+            });
         };
 
         //** INIT **//

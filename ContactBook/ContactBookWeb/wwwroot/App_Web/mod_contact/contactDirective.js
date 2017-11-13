@@ -24,3 +24,17 @@ contact.directive('emailItem', function () {
         }
     };
 });
+
+contact.directive('phoneItem', function () {
+    return {
+        restrict: 'EA',
+        scope: {
+            item: '=phoneItem'
+        },
+        templateUrl: 'App_Web/mod_contact/collection/contact_Phone.html',
+        link: function (scope, $scope) {
+            scope.item.dropdown = scope.item.phoneTypeId - 1;
+            scope.item.controlId = "phone" + scope.item.phoneId;
+        }
+    };
+});

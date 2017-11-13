@@ -1,0 +1,31 @@
+﻿<div class="form-group" id="item.controlId" ng-show="!$parent.contactCtrl.viewOnly">
+    <label for="phone" class="col-lg-2 control-label"></label>
+    <div class="col-lg-6">
+        <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" required
+               ng-model="item.number" />
+    </div>
+    <div class="col-lg-2" style="margin-left:-15px">
+        <select class="btn btn-sm btn-alt-link"
+                ng-model="item.phoneType"
+                ng-init="item.phoneType = item.phoneType || $parent.commonCtrl.phoneTypes[item.dropdown]"
+                ng-options="phoneType as phoneType.name for phoneType in $parent.commonCtrl.phoneTypes track by phoneType.phoneTypeId">
+            <option style="display:none" value="">Phone Type</option>
+        </select>
+    </div>
+    <div class="col-lg-1" style="margin-left:25px">
+        <button class="btn btn-sm btn-alt-primary" ng-click="$parent.contactCtrl.deletePhone(item)">
+            <span class="fa fa-minus"></span>
+        </button>
+    </div>
+</div>
+
+<div class="form-group" id="item.controlId" style="margin-top:-20px" ng-show="$parent.contactCtrl.viewOnly">
+    <label for="phone" class="col-lg-2 control-label"><span class="fa fa-phone"></span></label>
+    <div class="col-lg-10 view-label">
+        <label id="phone" ng-bind="item.number"></label>
+        <span ng-if="item.phoneTypeId">
+            <label>- </label>
+        </span>
+        <label> {{$parent.commonCtrl.phoneTypes[item.phoneTypeId-1].name}}</label>
+    </div>
+</div>
