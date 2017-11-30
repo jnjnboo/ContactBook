@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ContactBookApi.Controllers
 {
     [Produces("application/json")]
-    [Route("v1/Contacts")]
+    [Route("v1/{userId}/Contacts")]
     public class ContactsController : Controller
     {
         public ContactsController(IContactRepository contactRepository)
@@ -17,11 +17,10 @@ namespace ContactBookApi.Controllers
 
         public IContactRepository ContactRepository { get; set; }
 
-        // GET: v1/Contacts/user
-        [HttpGet("{user}")]
-        public async Task<IActionResult> GetContacts([FromRoute] int user)
+        [HttpGet]
+        public async Task<IActionResult> GetContacts([FromRoute] int userId)
         {
-            var results = await ContactRepository.GetContacts(user);
+            var results = await ContactRepository.GetContacts(userId);
             if (!results.Any())
             {
                 return NotFound();
@@ -30,7 +29,6 @@ namespace ContactBookApi.Controllers
             return Ok(results);
         }
 
-        // GET: v1/Contacts/default
         [Route("Default")]
         [HttpGet]
         public IActionResult GetDefault()
@@ -47,9 +45,8 @@ namespace ContactBookApi.Controllers
             return Ok(results);
         }
 
-        // GET: v1/Contacts/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetContact([FromRoute] int id)
+        public async Task<IActionResult> GetContact([FromRoute] int userId, [FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
@@ -66,21 +63,20 @@ namespace ContactBookApi.Controllers
             return Ok(contact);
         }
 
-        // PUT: v1/Contacts/5
-        [HttpPut("{contactId}")]
-        public async Task<IActionResult> PutContact([FromRoute] int contactId, [FromBody] Contact contact)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutContact([FromRoute] int userId, [FromRoute] int id, [FromBody] Contact contact)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (contactId != contact.ContactId)
+            if (id != contact.ContactId)
             {
-                return BadRequest("ContactId:" + contactId + " and the id of the contact passed in do not match");
+                return BadRequest("ContactId:" + id + " and the id of the contact passed in do not match");
             }
 
-            var exists = await ContactRepository.ContactExists(contactId);
+            var exists = await ContactRepository.ContactExists(id);
 
             if (!exists)
             {
@@ -100,9 +96,8 @@ namespace ContactBookApi.Controllers
             return NoContent();
         }
 
-        // POST: v1/Contacts
         [HttpPost]
-        public async Task<IActionResult> PostContact([FromBody] Contact contact)
+        public async Task<IActionResult> PostContact([FromRoute] int userId, [FromBody] Contact contact)
         {
             if (!ModelState.IsValid)
             {
@@ -122,9 +117,8 @@ namespace ContactBookApi.Controllers
             return CreatedAtAction("GetContact", new { id = contact.ContactId }, contact);
         }
 
-        // DELETE: api/Contacts/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteContact([FromRoute] int id)
+        public async Task<IActionResult> DeleteContact([FromRoute] int userId, [FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {

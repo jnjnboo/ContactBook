@@ -16,7 +16,7 @@ namespace ContactBookApi.Controllers
             context = cbContext;
         }
 
-
+        [Route("v1/Lookup/AddressTypes")]
         [HttpGet]
         public async Task<IActionResult> GetAddressTypes()
         {
@@ -29,6 +29,7 @@ namespace ContactBookApi.Controllers
             return Ok(results);
         }
 
+        [Route("v1/Lookup/EmailTypes")]
         [HttpGet]
         public async Task<IActionResult> GetEmailTypes()
         {
@@ -41,6 +42,7 @@ namespace ContactBookApi.Controllers
             return Ok(results);
         }
 
+        [Route("v1/Lookup/EventTypes")]
         [HttpGet]
         public async Task<IActionResult> GetEventTypes()
         {
@@ -53,6 +55,7 @@ namespace ContactBookApi.Controllers
             return Ok(results);
         }
 
+        [Route("v1/Lookup/PhoneTypes")]
         [HttpGet]
         public async Task<IActionResult> GetPhoneTypes()
         {

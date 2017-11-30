@@ -41,5 +41,7 @@ common.controller('commonController', ['$scope', '$rootScope', '$route', '$route
         //** INIT **//
         $scope.init = function () {
             commonCtrl.getAllLookups();
+            //TODO: update with real UserID when Auth in place
+            commonCtrl.user = { userId: 1 };
         };
     }]);
