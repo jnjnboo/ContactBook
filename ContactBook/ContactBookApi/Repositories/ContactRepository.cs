@@ -11,9 +11,10 @@ namespace ContactBookApi.Repositories
         private ContactBookContext context;
         public ContactRepository(ContactBookContext context) => this.context = context;
 
-        public async Task<IEnumerable<Contact>> GetContacts()
+        public async Task<IEnumerable<Contact>> GetContacts(int id)
         {
             return await context.Contact
+                .Where(c => c.UserId == id)
                 .Include(c => c.Address)
                 .Include(c => c.Email)
                 .Include(c => c.Event)

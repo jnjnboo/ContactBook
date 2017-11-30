@@ -6,7 +6,7 @@ namespace ContactBookApi.Repositories
 {
     public interface IContactRepository
     {
-        Task<IEnumerable<Contact>> GetContacts();
+        Task<IEnumerable<Contact>> GetContacts(int user);
         Task<int> AddContact(Contact contact);
         Task<Contact> GetContact(int id);
         Task<Contact> DeleteContact(int id);

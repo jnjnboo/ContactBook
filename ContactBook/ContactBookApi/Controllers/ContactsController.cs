@@ -17,11 +17,11 @@ namespace ContactBookApi.Controllers
 
         public IContactRepository ContactRepository { get; set; }
 
-        // GET: v1/Contacts
-        [HttpGet]
-        public async Task<IActionResult> GetContacts()
+        // GET: v1/Contacts/user
+        [HttpGet("{user}")]
+        public async Task<IActionResult> GetContacts([FromRoute] int user)
         {
-            var results = await ContactRepository.GetContacts();
+            var results = await ContactRepository.GetContacts(user);
             if (!results.Any())
             {
                 return NotFound();
