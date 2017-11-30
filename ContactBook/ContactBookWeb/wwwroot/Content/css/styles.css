@@ -1,6 +1,7 @@
 ﻿.brightText {
-    color: #009b74;
+    color: #CD3427;
 }
+
 
 .wrapper {
     position: relative;
@@ -181,7 +182,6 @@
 /*.panel-alt-body {
     background-color: #2e2f2f;
 }*/
-
 .panel-alt-primary {
     border-color: rgba(0, 0, 0, 0.6);
 }
@@ -214,65 +214,20 @@
     padding: 0px;
 }
 
-.btn-alt-link {
-    background: none !important;
-    border: none;
-    color: #777777;
-    cursor: pointer;
-}
-    .btn-alt-link:hover,
-    .btn-alt-link:focus,
-    .btn-alt-link:active,
-    .btn-alt-link.active,
-    .open > .dropdown-toggle.btn-alt-link {
-        color: #009b74;
-    }
-
-    .btn-alt-link:active,
-    .btn-alt-link.active,
-    .open > .dropdown-toggle.btn-alt-link {
-        background-image: none;
-    }
-    .btn-alt-link.disabled,
-    .btn-alt-link[disabled],
-    fieldset[disabled] .btn-alt-link,
-    .btn-alt-link.disabled:hover,
-    .btn-alt-link[disabled]:hover,
-    fieldset[disabled] .btn-alt-link:hover,
-    .btn-alt-link.disabled:focus,
-    .btn-alt-link[disabled]:focus,
-    fieldset[disabled] .btn-alt-link:focus,
-    .btn-alt-link.disabled:active,
-    .btn-alt-link[disabled]:active,
-    fieldset[disabled] .btn-alt-link:active,
-    .btn-alt-link.disabled.active,
-    .btn-alt-link[disabled].active,
-    fieldset[disabled] .btn-alt-link.active {
-        background: none;
-        border: none;
-        color: #777777;
-    }
-
-.btn-alt-primary .badge {
-    color: #464545;
-    background-color: #ffffff;
-}
-    
 .btn-alt-primary {
-        color: #009b74;
-        font-weight: bold;
-        background-color: #dcdee0;
-        border-color: #dcdee0;
-    }
+    color: #ffffff;
+    background-color: #858383;
+    border-color: #858383;
+}
 
     .btn-alt-primary:hover,
     .btn-alt-primary:focus,
     .btn-alt-primary:active,
     .btn-alt-primary.active,
     .open > .dropdown-toggle.btn-alt-primary {
-        color: #009b74;
-        background-color: #d0d1d2;
-        border-color: #d0d1d2;
+        color: #ffffff;
+        background-color: #858383;
+        border-color: #272727;
     }
 
     .btn-alt-primary:active,
@@ -296,16 +251,14 @@
     .btn-alt-primary.disabled.active,
     .btn-alt-primary[disabled].active,
     fieldset[disabled] .btn-alt-primary.active {
-        color: #009b74;
-        background-color: #dcdee0;
-        border-color: #dcdee0;
+        background-color: #858383;
+        border-color: #858383;
     }
 
     .btn-alt-primary .badge {
         color: #464545;
         background-color: #ffffff;
     }
-
 .btn-alt-default {
     color: #ffffff;
     background-color: #3e444c;
@@ -362,7 +315,7 @@
 }
 
 .selected {
-    outline: 1px solid #858383;
+    outline: solid #858383;
 }
 
     .btn-clr-default {
