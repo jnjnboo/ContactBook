@@ -31,9 +31,9 @@ namespace ContactBookApi
                 .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver())
                 .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
                 .AddMvcOptions(options => { options.CacheProfiles.Add("NoCache", new CacheProfile { NoStore = true, Duration = 0 }); });
+            services.AddMemoryCache();
 
             services.AddDbContext<ContactBookContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ContactBook")));
-            services.AddScoped<ILookupRepository, LookupRepository>();
             services.AddScoped<IContactRepository, ContactRepository>();
 
             var corsBuilder = new CorsPolicyBuilder();

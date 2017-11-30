@@ -8,7 +8,7 @@ namespace ContactBookApi.Controllers
 {
     [Produces("application/json")]
     [Route("v1/Contacts")]
-    public class ContactsController : Microsoft.AspNetCore.Mvc.Controller
+    public class ContactsController : Controller
     {
         public ContactsController(IContactRepository contactRepository)
         {

@@ -1,25 +1,26 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using ContactBookApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using ContactBookApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContactBookApi.Controllers
 {
     [Produces("application/json")]
-    public class LookupController : Microsoft.AspNetCore.Mvc.Controller
+    public class LookupController : Controller
     {
-        public LookupController(ILookupRepository lookupRepository)
+        private ContactBookContext context;
+
+        public LookupController(ContactBookContext cbContext)
         {
-            this.LookupRepository = lookupRepository;
+            context = cbContext;
         }
 
-        public ILookupRepository LookupRepository { get; set; }
 
-        [Route("v1/Lookup/AddressTypes")]
         [HttpGet]
         public async Task<IActionResult> GetAddressTypes()
         {
-            var results = await LookupRepository.GetAddressTypes();
+            var results = await context.AddressType.ToListAsync();
             if (!results.Any())
             {
                 return NotFound();
@@ -28,11 +29,10 @@ namespace ContactBookApi.Controllers
             return Ok(results);
         }
 
-        [Route("v1/Lookup/EmailTypes")]
         [HttpGet]
         public async Task<IActionResult> GetEmailTypes()
         {
-            var results = await LookupRepository.GetEmailTypes();
+            var results = await context.EmailType.ToListAsync();
             if (!results.Any())
             {
                 return NotFound();
@@ -41,11 +41,10 @@ namespace ContactBookApi.Controllers
             return Ok(results);
         }
 
-        [Route("v1/Lookup/EventTypes")]
         [HttpGet]
         public async Task<IActionResult> GetEventTypes()
         {
-            var results = await LookupRepository.GetEventTypes();
+            var results = await context.EventType.ToListAsync();
             if (!results.Any())
             {
                 return NotFound();
@@ -54,11 +53,10 @@ namespace ContactBookApi.Controllers
             return Ok(results);
         }
 
-        [Route("v1/Lookup/PhoneTypes")]
         [HttpGet]
         public async Task<IActionResult> GetPhoneTypes()
         {
-            var results = await LookupRepository.GetPhoneTypes();
+            var results = await context.PhoneType.ToListAsync();
             if (!results.Any())
             {
                 return NotFound();
@@ -71,7 +69,7 @@ namespace ContactBookApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetWebsiteTypes()
         {
-            var results = await LookupRepository.GetWebsiteTypes();
+            var results = await context.WebsiteType.ToListAsync();
             if (!results.Any())
             {
                 return NotFound();

@@ -6,3 +6,7 @@ ContactBook/ContactBookApi/obj/
 ContactBook/ContactBookWeb/bin/
 ContactBook/ContactBookWeb/obj/
 ContactBook/ContactBookWeb/wwwroot/lib/
+CloudContactBook/packages/
+CloudContactBook/.vs/
+CloudContactBook/ContactBookApi/obj/
+CloudContactBook/ContactBookWebJob/obj/
