@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using ContactBookApi.Models;
-using ContactBookApi.Repositories;
+using ContactBookApi.Persistence;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContactBookApi.Controllers

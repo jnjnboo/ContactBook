@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using ContactBookApi.Models;
 
-namespace ContactBookApi.Repositories
+namespace ContactBookApi.Persistence
 {
     public interface IContactRepository
     {

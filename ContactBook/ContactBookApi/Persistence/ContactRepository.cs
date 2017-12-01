@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using ContactBookApi.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ContactBookApi.Repositories
+namespace ContactBookApi.Persistence
 {
     public class ContactRepository : IContactRepository
     {

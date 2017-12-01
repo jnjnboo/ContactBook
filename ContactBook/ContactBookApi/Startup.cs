@@ -1,5 +1,5 @@
 ﻿using ContactBookApi.Models;
-using ContactBookApi.Repositories;
+using ContactBookApi.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ContactBookApi.Controllers;
 using ContactBookApi.Models;
-using ContactBookApi.Repositories;
+using ContactBookApi.Persistence;
 using ContactBookApi.Test.Config;
 using ContactBookApi.Test.Mocks;
 

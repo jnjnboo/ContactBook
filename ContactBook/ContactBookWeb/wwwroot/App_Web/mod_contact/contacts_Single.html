@@ -4,22 +4,22 @@
             <span style="margin-bottom:10px">
                 <span ng-show="!contactCtrl.viewOnly">
                     <span ng-show="contactCtrl.singleContact.contactId">
-                        <button class="btn btn-sm btn-alt-primary"
+                        <button class="btn btn-sm btn-warning"
                                 ng-click="contactCtrl.saveEdit(contactCtrl.singleContact);">
                             <span class="fa fa-save"></span>
                             Save
                         </button>
-                        <button class="btn btn-sm btn-alt-primary" ng-click="contactCtrl.cancelEdit()">
+                        <button class="btn btn-sm btn-default" ng-click="contactCtrl.cancelEdit()">
                             <span class="fa fa-times-circle-o"></span>
                             <span>Cancel</span>
                         </button>
                     </span>
                     <span ng-show="!contactCtrl.singleContact.contactId">
-                        <button class="btn btn-sm btn-alt-primary" ng-click="contactCtrl.saveNew(contactCtrl.singleContact);">
+                        <button class="btn btn-sm btn-warning" ng-click="contactCtrl.saveNew(contactCtrl.singleContact);">
                             <span class="fa fa-save"></span>
                             Add
                         </button>
-                        <button class="btn btn-sm btn-alt-primary" ng-click="contactCtrl.cancelSaveNew()">
+                        <button class="btn btn-sm btn-default" ng-click="contactCtrl.cancelSaveNew()">
                             <span class="fa fa-trash-o"></span>
                             <span>Cancel</span>
                         </button>
@@ -27,19 +27,19 @@
                 </span>
                 <span ng-show="contactCtrl.viewOnly && contactCtrl.singleContactIsLoaded">
                     <span ng-show="!contactCtrl.deleteContactConfirmation">
-                        <button class="btn btn-sm btn-alt-primary" ng-click="contactCtrl.editContact()">
+                        <button class="btn btn-sm btn-warning" ng-click="contactCtrl.editContact()">
                             <span class="fa fa-edit"></span> Edit
                         </button>
-                        <button class="btn btn-sm btn-alt-primary" ng-click="contactCtrl.closeContact()">
+                        <button class="btn btn-sm btn-default" ng-click="contactCtrl.closeContact()">
                             <span class="fa fa-times-circle-o"></span>
                             <span> Close </span>
                         </button>
                     </span>
                     <span ng-show="contactCtrl.deleteContactConfirmation">
-                        <button class="btn btn-sm btn-alt-primary" ng-click="contactCtrl.deleteContact(contactCtrl.singleContact)">
+                        <button class="btn btn-sm btn-warning" ng-click="contactCtrl.deleteContact(contactCtrl.singleContact)">
                             <span class="fa fa-trash-o"></span> Delete
                         </button>
-                        <button class="btn btn-sm btn-alt-primary" ng-click="contactCtrl.closeContact()">
+                        <button class="btn btn-sm btn-default" ng-click="contactCtrl.closeContact()">
                             <span class="fa fa-times-circle-o"></span>
                             <span> Cancel </span>
                         </button>
@@ -104,15 +104,20 @@
                                ng-model="contactCtrl.singleContact.relationship" />
                     </div>
                 </div>
+                
                 <div class="form-group">
                     <label for="addEmail" class="col-lg-2 control-label padTop"><span class="fa fa-envelope-open-o"></span></label>
                     <label class="col-lg-3 control-label">Email Addresses</label>
-                    <div class="col-lg-7" />
+                    <div class="col-lg-7"></div>
                 </div>
-                <div class="form-group"></div>
-                <div ng-repeat="email in contactCtrl.singleContact.email">
-                    <div email-item="email"></div>
+
+                <div class="form-group">
+                    <div class="form-group"></div>
+                    <div ng-repeat="email in contactCtrl.singleContact.email">
+                        <div email-item="email"></div>
+                    </div>
                 </div>
+
                 <div class="form-group">
                     <label for="addEmail" class="col-lg-2 control-label padTop"></label>
                     <div class="col-lg-10">
@@ -121,15 +126,20 @@
                         </button>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label for="addPhone" class="col-lg-2 control-label padTop"><span class="fa fa-phone"></span></label>
                     <label class="col-lg-3 control-label">Phone Numbers</label>
-                    <div class="col-lg-7" />
+                    <div class="col-lg-7"></div>
                 </div>
-                <div class="form-group"></div>
-                <div ng-repeat="phone in contactCtrl.singleContact.phone">
-                    <div phone-item="phone"></div>
+
+                <div class="form-group">
+                    <div class="form-group"></div>
+                    <div ng-repeat="phone in contactCtrl.singleContact.phone">
+                        <div phone-item="phone"></div>
+                    </div>
                 </div>
+
                 <div class="form-group">
                     <label for="addPhone" class="col-lg-2 control-label padTop"></label>
                     <div class="col-lg-10">
@@ -138,12 +148,14 @@
                         </button>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label for="contactNotes" class="col-lg-2 control-label padTop"><span class="fa fa-list-alt"></span></label>
                     <div class="col-lg-9">
                         <textarea class="form-control" rows="3" id="contactNotes" placeholder="Notes"
                                   ng-model="contactCtrl.singleContact.notes"></textarea>
                     </div>
+                    <div class="col-lg-1" />
                 </div>
             </fieldset>
         </form>
@@ -184,18 +196,22 @@
                         <label id="contactName" ng-bind="contactCtrl.singleContact.relationship"></label>
                     </div>
                 </div>
+
                 <div ng-repeat="email in contactCtrl.singleContact.email">
                     <div email-item="email"></div>
                 </div>
+
                 <div ng-repeat="phone in contactCtrl.singleContact.phone">
                     <div phone-item="phone"></div>
                 </div>
+
                 <div class="form-group" ng-if="contactCtrl.singleContact.notes">
                     <label for="contactNotes" class="col-lg-2 control-label"><span class="fa fa-list-alt"></span></label>
                     <div class="col-lg-10 view-label">
                         <label id="contactNotes" ng-bind="contactCtrl.singleContact.notes"></label>
                     </div>
                 </div>
+
             </fieldset>
         </form>
     </div>
