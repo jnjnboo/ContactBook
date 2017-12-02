@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ContactBookApi.Controllers;
 using ContactBookApi.Models;
 using ContactBookApi.Persistence;
 using ContactBookApi.Test.Config;
 using ContactBookApi.Test.Mocks;
+using NUnit.Framework;
 
 namespace ContactBookApi.Test
 {
-    [TestClass]
+    [TestFixture]
     public class ContactTests
     {
-        [TestMethod]
+        [Test]
         public async Task GetContactReturnsValidResponse()
         {
             using (var context = SqlLiteInMemory.GetTestContext())
@@ -25,10 +25,10 @@ namespace ContactBookApi.Test
 
                 var result = await contactController.GetContacts(userId);
 
-                Assert.IsInstanceOfType(result, typeof(OkObjectResult));
+                Assert.That(result, Is.InstanceOf(typeof(OkObjectResult)));
                 var ok = (OkObjectResult)result;
 
-                Assert.IsInstanceOfType(ok.Value, typeof(List<Contact>));
+                Assert.That(ok.Value, Is.InstanceOf(typeof(List<Contact>)));
                 var listResult = (List<Contact>)ok.Value;
 
                 Assert.AreEqual(2, listResult.Count);
