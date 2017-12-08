@@ -1,29 +1,11 @@
 {
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:42",
-      "sslPort": 0
-    }
-  },
-  "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "v1/Lookup/EmailTypes",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+  "ContactBookApi": {
+    "commandName": "Project",
+    "launchBrowser": false,
+    "launchUrl": "api/values",
+    "environmentVariables": {
+      "ASPNETCORE_ENVIRONMENT": "Development"
     },
-    "ContactBookApi": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "api/values",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:42/"
-    }
+    "applicationUrl": "http://localhost:42/"
   }
 }

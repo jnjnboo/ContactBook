@@ -18,7 +18,7 @@ namespace ContactBookApi
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                .AddJsonFile($"appsettings_{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
 
             this.Configuration = builder.Build();
         }
