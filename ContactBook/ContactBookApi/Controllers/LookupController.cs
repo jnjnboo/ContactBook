@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using ContactBookApi.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ContactBookApi.Controllers
@@ -11,9 +11,9 @@ namespace ContactBookApi.Controllers
     {
         private ContactBookContext context;
 
-        public LookupController(ContactBookContext cbContext)
+        public LookupController(ContactBookContext contactBookContext)
         {
-            context = cbContext;
+            context = contactBookContext;
         }
 
         [Route("v1/Lookup/AddressTypes")]

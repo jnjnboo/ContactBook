@@ -64,7 +64,7 @@ namespace ContactBookApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutContact([FromRoute] int userId, [FromRoute] int id, [FromBody] Contact contact)
+        public async Task<IActionResult> PutContact([FromRoute] int id, [FromBody] Contact contact)
         {
             if (!ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace ContactBookApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostContact([FromRoute] int userId, [FromBody] Contact contact)
+        public async Task<IActionResult> PostContact([FromBody] Contact contact)
         {
             if (!ModelState.IsValid)
             {

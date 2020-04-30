@@ -1,4 +1,6 @@
-﻿using ContactBookApi.Models;
+﻿using System;
+using System.Text.Json;
+using ContactBookApi.Models;
 using ContactBookApi.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
@@ -7,18 +9,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Serialization;
 
 namespace ContactBookApi
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile($"appsettings_{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+                .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
 
             this.Configuration = builder.Build();
         }
@@ -28,8 +32,7 @@ namespace ContactBookApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc()
-                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver())
-                .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+                .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase)
                 .AddMvcOptions(options => { options.CacheProfiles.Add("NoCache", new CacheProfile { NoStore = true, Duration = 0 }); });
             services.AddMemoryCache();
 
@@ -46,27 +49,28 @@ namespace ContactBookApi
             {
                 options.AddPolicy("SiteCorsPolicy", corsBuilder.Build());
             });
+
+            services.AddLogging(builder => builder.AddLog4Net());
+            services
+            
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
-                loggerFactory.AddConsole(LogLevel.Debug, true);
+               //loggerFactory.AddProvider();.AddConsole(LogLevel.Debug, true);
             }
+
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+            });
 
             loggerFactory.AddLog4Net();
 
-            app.UseCors("SiteCorsPolicy");
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "v1/{controller=Contacts}/{action=Contact}/{id?}");
-            });
         }
     }
 }

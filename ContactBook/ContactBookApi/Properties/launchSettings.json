@@ -1,11 +1,13 @@
 {
-  "ContactBookApi": {
-    "commandName": "Project",
-    "launchBrowser": false,
-    "launchUrl": "api/values",
-    "environmentVariables": {
-      "ASPNETCORE_ENVIRONMENT": "Development"
-    },
-    "applicationUrl": "http://localhost:42/"
+  "profiles": {
+    "ContactBookApi": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "launchUrl": "api/values",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:42/"
+    }
   }
 }

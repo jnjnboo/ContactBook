@@ -10,3 +10,13 @@ CloudContactBook/packages/
 CloudContactBook/.vs/
 CloudContactBook/ContactBookApi/obj/
 CloudContactBook/ContactBookWebJob/obj/
+ContactBook/ContactBook.v3.ncrunchsolution.user
+ContactBook/ContactBookApiService/bin/
+ContactBook/ContactBookApiService/obj/
+ContactBook/ContactBookWeb/ContactBookWeb.csproj.user
+ContactBook/packages/
+ContactBook/ContactBookApi.Test/StyleCop.Cache
+ContactBook/ContactBookApi/StyleCop.Cache
+ContactBook/ContactBookWeb/StyleCop.Cache
+ContactBook/ContactBookApi/ContactBookApi.csproj.user
+ContactBook/ContactBookApiApplication/ContactBookApiApplication.sfproj.user

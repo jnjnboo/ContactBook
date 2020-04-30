@@ -27,7 +27,7 @@ namespace ContactBookApi.Persistence
         /// <summary>
         /// Add a new Contact to the Contact repository.
         /// </summary>
-        /// <param name="contact">Model.Contact object.</param>
+        /// <param name="contact">Model.Contact object to be saved to data store.</param>
         /// <returns>Async Task, with the number of objects saved to the repository.</returns>
         public async Task<int> AddContact(Contact contact)
         {
@@ -36,6 +36,11 @@ namespace ContactBookApi.Persistence
             return await context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Get a contact with all child elements.
+        /// </summary>
+        /// <param name="id">Id of contact to be returned.</param>
+        /// <returns>Async task, with Contact object result from query on id</returns>
         public async Task<Contact> GetContact(int id)
         {
             return await context.Contact
@@ -47,6 +52,11 @@ namespace ContactBookApi.Persistence
                 .SingleOrDefaultAsync(m => m.ContactId == id);
         }
 
+        /// <summary>
+        /// Delete an existing contact with cascade delete in data store.
+        /// </summary>
+        /// <param name="id">Id of contact to be deleted.</param>
+        /// <returns>Async Task, with the Contact that was deleted.</returns>
         public async Task<Contact> DeleteContact(int id)
         {
             var contact = await GetContact(id);
@@ -94,18 +104,96 @@ namespace ContactBookApi.Persistence
 
         private static void SetCollectionTypeIds(Contact contact)
         {
+            foreach (var address in contact.Address)
+            {
+                address.Contact = null;
+                if (address.AddressType != null)
+                {
+                    address.AddressTypeId = address.AddressType.AddressTypeId;
+                    address.AddressType = null;
+                }
+            }
+
             foreach (var email in contact.Email)
             {
                 email.Contact = null;
-                email.EmailTypeId = email.EmailType.EmailTypeId;
-                email.EmailType = null;
+                if (email.EmailType != null)
+                {
+                    email.EmailTypeId = email.EmailType.EmailTypeId;
+                    email.EmailType = null;
+                }
+            }
+
+            foreach (var eventItem in contact.Event)
+            {
+                eventItem.Contact = null;
+                if (eventItem.EventType != null)
+                {
+                    eventItem.EventId = eventItem.EventType.EventTypeId;
+                    eventItem.EventType = null;
+                }
             }
 
             foreach (var phone in contact.Phone)
             {
                 phone.Contact = null;
-                phone.PhoneTypeId = phone.PhoneType.PhoneTypeId;
-                phone.PhoneType = null;
+                if (phone.PhoneType != null)
+                {
+                    phone.PhoneTypeId = phone.PhoneType.PhoneTypeId;
+                    phone.PhoneType = null;
+                }
+            }
+
+            foreach (var webSite in contact.Website)
+            {
+                webSite.Contact = null;
+                if (webSite.WebsiteType != null)
+                {
+                    webSite.WebsiteTypeId = webSite.WebsiteType.WebsiteTypeId;
+                    webSite.WebsiteType = null;
+                }
+            }
+        }
+
+        private void UpdateAddressEntries(Contact contact, Contact existingContact)
+        {
+            foreach (var existingAddress in existingContact.Address.ToList())
+            {
+                if (!contact.Address.Any(a => a.AddressId == existingAddress.AddressId))
+                {
+                    context.Address.Remove(existingAddress);
+                }
+            }
+
+            foreach (var address in contact.Address)
+            {
+                if (address.AddressType != null)
+                {
+                    address.AddressTypeId = address.AddressType.AddressTypeId;
+                }
+
+                var existingAddress = existingContact.Address
+                    .Where(a => a.AddressId == address.AddressId).SingleOrDefault();
+
+                if (existingAddress != null)
+                {
+                    context.Entry(existingAddress).CurrentValues.SetValues(address);
+                }
+                else
+                {
+                    var newAddress = new Address
+                    {
+                        ContactId = existingContact.ContactId,
+                        Address1 = address.Address1,
+                        Address2 = address.Address2,
+                        City = address.City,
+                        StateProvince = address.StateProvince,
+                        PostalCode = address.PostalCode,
+                        Country = address.Country,
+                        AddressTypeId = address.AddressTypeId
+                    };
+                    existingContact.Address.Add(newAddress);
+                }
             }
         }
 
@@ -127,8 +215,8 @@ namespace ContactBookApi.Persistence
                 }
 
                 var existingEmail = existingContact.Email
-                    .Where(e => e.EmailId == emailModel.EmailId)
-                    .SingleOrDefault();
+                    .Where(e => e.EmailId == emailModel.EmailId).SingleOrDefault();
+
                 if (existingEmail != null)
                 {
                     context.Entry(existingEmail).CurrentValues.SetValues(emailModel);
@@ -145,6 +233,8 @@ namespace ContactBookApi.Persistence
                 }
             }
         }
+
+        private void UpdateEventEntries(Event eventItem, Event existingEvent) { }
 
         private void UpdatePhoneEntries(Contact contact, Contact existingContact)
         {
@@ -172,15 +262,12 @@ namespace ContactBookApi.Persistence
                 }
                 else
                 {
-                    var newPhone = new Phone
-                    {
-                        ContactId = existingContact.ContactId,
-                        Number = phoneModel.Number,
-                        PhoneTypeId = phoneModel.PhoneTypeId
-                    };
-                    existingContact.Phone.Add(newPhone);
+                    phoneModel.ContactId = contact.ContactId;
+                    existingContact.Phone.Add(phoneModel);
                 }
             }
         }
+
+        private void UpdateWebsiteEntries(Contact contact, Contact existingContact) { }
     }
 }
